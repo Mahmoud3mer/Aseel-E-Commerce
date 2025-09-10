@@ -33,6 +33,8 @@
     <!-- responsive -->
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
+    {{-- My CSS Code --}}
+    <link rel="stylesheet" href="{{asset('assets/css/myCss/style.css')}}">
 </head>
 
 <body>
@@ -95,7 +97,9 @@
     <script src="{{asset('assets/js/sticker.js')}}"></script>
     <!-- main js -->
     <script src="{{asset('assets/js/main.js')}}"></script>
-
+    
+    {{-- My JS Code --}}
+    @stack('scripts')
 </body>
 
 </html>

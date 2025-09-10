@@ -22,7 +22,8 @@
                                 </ul>
                             </li>
                             <li class="{{ request()->routeIs('products.index') ? 'current-list-item' : '' }}"><a href="{{route('products.index')}}">المنتجات</a></li>
-                            <li><a href="{{route('categories.index')}}">الأقسام</a></li>
+                            <li class="{{ request()->routeIs('categories.index') ? 'current-list-item' : '' }}"><a href="{{route('categories.index')}}">الأقسام</a></li>
+                            <li class="{{ request()->routeIs('products.create') ? 'current-list-item' : '' }}"><a href="{{route('products.create')}}">اضافة منتج</a></li>
                             <li><a href="about.html">من نحن</a></li>
                             <li><a href="#">الصفحات</a>
                                 <ul class="sub-menu">

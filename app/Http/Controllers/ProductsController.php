@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Http\Requests\CreateProductRequest;
 
 class ProductsController extends Controller
 {
@@ -18,5 +20,44 @@ class ProductsController extends Controller
         }
 
         return view('products.index', compact('products'));
+    }
+
+    public function create(){
+        $categories = Category::all();
+        return view('products.ajax.create', compact('categories'));
+    }
+
+    public function store(CreateProductRequest $request){
+
+        $validatedData = $request->validated();
+
+        if ($request->hasFile('image_path')) {
+           $image = $request->file('image_path');
+            $extension = $image->getClientOriginalExtension();
+            $fileName = time().rand(1, 1000).'.'.$extension;
+            $image->move(public_path('upload'), $fileName);
+            
+            $validatedData['image_path'] = $fileName;
+        }else {
+            $validatedData['image_path'] = null;
+        }
+
+        Product::create($validatedData);
+
+        return redirect()->route('products.create')->with('success', 'تم إضافة المنتج بنجاح');
+    }
+
+    public function destroy($productId)
+    {
+        $product = Product::find($productId);
+
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'المنتج غير موجود');
+        }
+
+        // Delete the product
+        $product->delete();
+
+        return redirect()->route('products.index')->with('success', 'تم حذف المنتج بنجاح');
     }
 }

@@ -14,6 +14,14 @@ Route::get('/', function () {
 
 // Products Routes
 Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
+Route::get('products/create', [ProductsController::class, 'create'])->name('products.create');
+Route::post('products', [ProductsController::class, 'store'])->name('products.store');
+Route::delete('products/{productId}', [ProductsController::class, 'destroy'])->name('products.destroy');
 
 // Categories Route
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+
+// Not Found Route
+Route::fallback(function () {
+    abort(404, 'الصفحة غير موجودة');
+});
