@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductsController extends Controller
 {
@@ -28,9 +29,7 @@ class ProductsController extends Controller
     }
 
     public function store(CreateProductRequest $request){
-
         $validatedData = $request->validated();
-
         if ($request->hasFile('image_path')) {
            $image = $request->file('image_path');
             $extension = $image->getClientOriginalExtension();
@@ -45,6 +44,52 @@ class ProductsController extends Controller
         Product::create($validatedData);
 
         return redirect()->route('products.create')->with('success', 'تم إضافة المنتج بنجاح');
+    }
+
+
+    public function edit($productId)
+    {
+        $product = Product::find($productId);
+        $categories = Category::all();
+
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'المنتج غير موجود');
+        }
+
+        return view('products.ajax.edit', compact('product', 'categories'));
+    }
+
+    public function update(UpdateProductRequest $request, $productId)
+    {
+        $product = Product::find($productId);
+
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'المنتج غير موجود');
+        }
+
+        $validatedData = $request->validated();
+        $imagePath = $product->image_path;
+
+        if ($request->hasFile('image_path')) {
+            // Delete the old image if exists
+            if ($imagePath && file_exists(public_path('upload/' . $imagePath))) {
+                unlink(public_path('upload/' . $imagePath));
+            }
+
+            $image = $request->file('image_path');
+            $extension = $image->getClientOriginalExtension();
+            $fileName = time() . rand(1, 1000) . '.' . $extension;
+            $image->move(public_path('upload'), $fileName);
+
+            $validatedData['image_path'] = $fileName;
+        } else {
+            // Keep the old image if no new image is uploaded
+            $validatedData['image_path'] = $product->image_path;
+        }
+
+        $product->update($validatedData);
+
+        return redirect()->route('products.edit', $productId)->with('success', 'تم تحديث المنتج بنجاح');
     }
 
     public function destroy($productId)

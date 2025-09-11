@@ -68,8 +68,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .remove-image:hover {
-    background: #f8d7da;
-    color: #721c24;
+    background: #b60819;
+    color: #f0f0f0;
 }
 
 .show-success-msg {

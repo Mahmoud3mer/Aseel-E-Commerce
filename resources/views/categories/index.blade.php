@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
-                        <p>Fresh and Organic</p>
+                        <p>Assel E-Commerce</p>
                         <h1>الأقسام</h1>
                     </div>
                 </div>

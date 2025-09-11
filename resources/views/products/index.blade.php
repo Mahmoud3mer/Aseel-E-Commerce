@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
-                        <p>Fresh and Organic</p>
+                        <p>Assel E-Commerce</p>
                         <h1>المنتجات</h1>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
     <!-- products -->
     <div class="product-section mt-150 mb-150" style="position: relative;">
         <div class="container">
-
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
@@ -57,6 +57,7 @@
                                 <button type="button" class="btn btn-danger delete-item-btn"><i class="fas fa-trash"></i>
                                     حذف</button>
                             </form>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary text-light"><i class="fas fa-edit"></i> تعديل </a>
                         </div>
                     </div>
                 @endforeach
