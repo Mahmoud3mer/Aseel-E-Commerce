@@ -15,9 +15,9 @@ class ProductsController extends Controller
         $category_id = request()->get('category');
 
         if ($category_id) {
-            $products = Product::where('category_id', $category_id)->get();
+            $products = Product::where('category_id', $category_id)->orderBy('created_at', 'desc')->paginate(5);
         } else {
-            $products = Product::all();
+            $products = Product::orderBy('created_at', 'desc')->paginate(5);
         }
 
         return view('products.index', compact('products'));

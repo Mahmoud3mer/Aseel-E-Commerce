@@ -107,9 +107,7 @@
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <textarea name="description" id="description" cols="30" rows="10" placeholder="الوصف">
-                                        {{ old('description') ?? $product->description }}
-                                    </textarea>
+                                    <textarea name="description" id="description" cols="30" rows="10" placeholder="الوصف">{{ old('description') ?? $product->description }}</textarea>
                                 </div>
 
                                 <p class="col-12" style="text-align: end"><input type="submit" value="تحديث"></p>
