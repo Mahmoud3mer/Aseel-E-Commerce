@@ -12,32 +12,40 @@
     <title>@yield('title')</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon3.png') }}">
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- fontawesome -->
-    <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
     <!-- bootstrap -->
-    <link rel="stylesheet" href="{{asset('assets/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <!-- owl carousel -->
-    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.css') }}">
     <!-- magnific popup -->
-    <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
     <!-- animate css -->
-    <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <!-- mean menu css -->
-    <link rel="stylesheet" href="{{asset('assets/css/meanmenu.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
     <!-- main style -->
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <!-- responsive -->
-    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 
     {{-- My CSS Code --}}
-    <link rel="stylesheet" href="{{asset('assets/css/myCss/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/myCss/style.css') }}">
+    {{-- Fonts --}}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Caprasimo&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+        body {
+            font-family: "Tajawal", sans-serif;
+        }
+    </style>
 </head>
 
-<body>
+<body dir="ltr">
 
     <!--PreLoader-->
     <div class="loader">
@@ -59,9 +67,12 @@
                     <span class="close-btn"><i class="fas fa-window-close"></i></span>
                     <div class="search-bar">
                         <div class="search-bar-tablecell">
-                            <h3>Search For:</h3>
-                            <input type="text" placeholder="Keywords">
-                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                            <h3>البحث في المنتجات: </h3>
+                            <form action="{{ route('products.search') }}" method="post">
+                                @csrf
+                                <input type="text" name="query" placeholder="الكلمات المفتاحية">
+                                <button type="submit">بحث <i class="fas fa-search"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -73,31 +84,37 @@
     {{-- Content --}}
     @yield('content')
 
+    {{-- Alert --}}
+    @if (session('success') || session('error'))
+        <x-alert :type="session('success') ? 'success' : 'danger'" :message="session('success') ?? session('error')" />
+    @endif
+    {{-- end Alert --}}
+
     {{-- Footer & Copyright --}}
     @include('layouts.partials.footer')
     {{-- end footer & copyright --}}
 
     <!-- jquery -->
-    <script src="{{asset('assets/js/jquery-1.11.3.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery-1.11.3.min.js') }}"></script>
     <!-- bootstrap -->
-    <script src="{{asset('assets/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- count down -->
-    <script src="{{asset('assets/js/jquery.countdown.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.countdown.js') }}"></script>
     <!-- isotope -->
-    <script src="{{asset('assets/js/jquery.isotope-3.0.6.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.isotope-3.0.6.min.js') }}"></script>
     <!-- waypoints -->
-    <script src="{{asset('assets/js/waypoints.js')}}"></script>
+    <script src="{{ asset('assets/js/waypoints.js') }}"></script>
     <!-- owl carousel -->
-    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
     <!-- magnific popup -->
-    <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
     <!-- mean menu -->
-    <script src="{{asset('assets/js/jquery.meanmenu.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.meanmenu.min.js') }}"></script>
     <!-- sticker js -->
-    <script src="{{asset('assets/js/sticker.js')}}"></script>
+    <script src="{{ asset('assets/js/sticker.js') }}"></script>
     <!-- main js -->
-    <script src="{{asset('assets/js/main.js')}}"></script>
-    
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+
     {{-- My JS Code --}}
     @stack('scripts')
 </body>

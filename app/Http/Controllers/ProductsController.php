@@ -105,4 +105,25 @@ class ProductsController extends Controller
 
         return redirect()->route('products.index')->with('success', 'تم حذف المنتج بنجاح');
     }
+
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'query' => 'required|string|max:255',
+        ],
+        [
+            'query.required' => 'يرجى إدخال كلمة بحث.',
+        ]);
+
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+                            ->orWhereHas('category', function ($q) use ($query) {
+                                $q->where('name', 'LIKE', "%{$query}%");
+                            })
+                            ->get();
+
+        return view('products.index', compact('products'));
+    }
 }

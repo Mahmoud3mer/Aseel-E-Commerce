@@ -142,15 +142,14 @@
         </div>
 
         {{-- Alert --}}
-        @if (session('success') || session('error'))
+        {{-- @if (session('success') || session('error'))
             <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert" style="position: fixed; top: 90px; right: 20px; z-index: 1000;">
                 {{ session('success') ?? session('error') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            {{-- <x-alert type="{{ session('success') ? 'success' : 'danger' }}" message="{{ session('success') ?? session('error') }}" /> --}}
-        @endif
+        @endif --}}
         {{-- end Alert --}}
     </div>
     <!-- end contact form -->

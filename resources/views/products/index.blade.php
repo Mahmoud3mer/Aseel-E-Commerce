@@ -23,7 +23,7 @@
     <div class="product-section mt-150 mb-150" style="position: relative;">
         <div class="container">
             
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
@@ -34,7 +34,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="row product-lists">
 

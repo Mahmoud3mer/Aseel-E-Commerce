@@ -8,13 +8,13 @@
         <!-- single home slider -->
         <div class="single-homepage-slider homepage-bg-1">
             <div class="container">
-                <div class="row">
+                <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle">جمال وتألق</p>
-                                <h1>اكتشفي أحدث مجموعات المكياج</h1>
-                                <div class="hero-btns">
+                                <p class="subtitle" style="text-align: center;">جمال وتألق</p>
+                                <h1 style="text-align: center;">اكتشفي أحدث مجموعات المكياج</h1>
+                                <div class="hero-btns d-flex justify-content-center">
                                     <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
                                     <a href="contact.html" class="bordered-btn">تواصل معنا</a>
                                 </div>
@@ -50,9 +50,9 @@
                     <div class="col-lg-10 offset-lg-1 text-right">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle">راحة وأناقة</p>
-                                <h1>خطوة واثقة مع أحدث الأحذية</h1>
-                                <div class="hero-btns">
+                                <p class="subtitle" style="text-align: center;">راحة وأناقة</p>
+                                <h1 style="text-align: center;">خطوة واثقة مع أحدث الأحذية</h1>
+                                <div class="hero-btns d-flex justify-content-center">
                                     <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
                                     <a href="contact.html" class="bordered-btn">تواصل معنا</a>
                                 </div>
@@ -69,9 +69,9 @@
                     <div class="col-lg-10 offset-lg-1 text-right">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle">التقط اللحظة</p>
-                                <h1>أفضل الكاميرات لكل لقطة</h1>
-                                <div class="hero-btns">
+                                <p class="subtitle" style="text-align: center;">التقط اللحظة</p>
+                                <h1 style="text-align: center;">أفضل الكاميرات لكل لقطة</h1>
+                                <div class="hero-btns  d-flex justify-content-center">
                                     <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
                                     <a href="contact.html" class="bordered-btn">تواصل معنا</a>
                                 </div>
