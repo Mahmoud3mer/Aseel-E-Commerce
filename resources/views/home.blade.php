@@ -127,11 +127,15 @@
                         <div class="single-product-item">
                             <div class="product-image">
                                 <a href="{{ route('products.index', ['category' => $category->id]) }}">
-                                    <img src="{{ url($category->image_path) }}" alt=""
+                                    <img src="{{ asset('upload/' . $category->image_path) }}" alt=""
                                         style="min-height: 250px; max-height: 250px;">
                                 </a>
                             </div>
-                            <h3>{{ $category->name }}</h3>
+                            <h3>
+                                <a href="{{ route('products.index', ['category' => $category->id]) }}">
+                                    {{ $category->name }}
+                                </a>
+                            </h3>
                         </div>
                     </div>
                 @endforeach

@@ -22,7 +22,7 @@
     <!-- products -->
     <div class="product-section mt-150 mb-150" style="position: relative;">
         <div class="container">
-            
+
             {{-- <div class="row">
                 <div class="col-md-12">
                     <div class="product-filters">
@@ -50,14 +50,19 @@
                             </p>
                             <a href="cart.html" class="btn btn-warning text-light"><i class="fas fa-shopping-cart"></i> أضف
                                 إلى السلة</a>
-                            <form action="{{ route('products.destroy', $product->id) }}" method="POST"
-                                style="display: inline;" class="delete-item-form">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-danger delete-item-btn"><i class="fas fa-trash"></i>
-                                    حذف</button>
-                            </form>
-                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary text-light"><i class="fas fa-edit"></i> تعديل </a>
+                            @auth
+                                @can('is_admin')
+                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                        style="display: inline;" class="delete-item-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger delete-item-btn"><i class="fas fa-trash"></i>
+                                            حذف</button>
+                                    </form>
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary text-light"><i
+                                            class="fas fa-edit"></i> تعديل </a>
+                                @endcan
+                            @endauth
                         </div>
                     </div>
                 @endforeach
@@ -77,15 +82,15 @@
                     </div>
                 </div>
             </div> --}}
-            
-             <div class="row">
+
+            <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="pagination-wrap">
                         {{ $products->links('pagination::default') }}
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
 
@@ -150,14 +155,14 @@
 
             document.addEventListener('click', function(event) {
                 // console.log(event.target);
-                
+
                 if (event.target.classList.contains('delete-item-btn')) {
                     // console.log('delete button clicked');
                     let formToDelete = event.target.closest('.delete-item-form');
 
                     if (modal && formToDelete) {
                         modal.style.display = 'block';
-                         backdrop.style.display = 'block';
+                        backdrop.style.display = 'block';
                         document.getElementById('confirmDeleteBtn').onclick = function() {
                             formToDelete.submit();
                         };

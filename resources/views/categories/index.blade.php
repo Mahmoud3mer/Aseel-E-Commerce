@@ -54,7 +54,7 @@
 
             </div>
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="pagination-wrap">
                         <ul>
@@ -66,7 +66,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- end products -->
