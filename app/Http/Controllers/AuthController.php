@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -29,7 +30,9 @@ class AuthController extends Controller
             'password.min' => 'كلمة المرور يجب أن تكون على الأقل 8 حروف',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $remember = $request->filled('remember');
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended(route('home'));
         }
@@ -78,5 +81,41 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect()->route('login');
+    }
+
+    // Google OAuth Methods
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+        $socialUser = Socialite::driver('google')->user();
+
+        // التحقق مما إذا كان المستخدم موجودًا
+        $user = User::where('google_id', $socialUser->id)->first();
+
+        if ($user) {
+            // تسجيل دخول المستخدم
+            Auth::login($user);
+            return redirect('/home');
+        } else {
+            // إنشاء مستخدم جديد
+            $newUser = User::create([
+                'name' => $socialUser->name,
+                'email' => $socialUser->email,
+                'google_id' => $socialUser->id,
+                'provider_name' => 'google',
+                'password' => encrypt('password_dummy'), // كلمة مرور وهمية
+            ]);
+
+            Auth::login($newUser);
+            return redirect('/home');
+        }
+        } catch (\Exception $e) {
+            return redirect('/login')->with('error', 'فشل تسجيل الدخول باستخدام Google.');
+        }
     }
 }

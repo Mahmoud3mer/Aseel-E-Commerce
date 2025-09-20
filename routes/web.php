@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Models\Category;
 
 
@@ -14,6 +15,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
 // Home Route
 Route::get('/', function () {
@@ -42,6 +45,14 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('categori
 Route::get('/customers', [CustomersController::class, 'index'])->name('customers.index');
 Route::post('/customers', [CustomersController::class, 'store'])->name('customers.store')->middleware('auth');
 
+// Cart Routes
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show')->middleware('auth');
+
+// Test Route
+Route::get('/test', function () {
+    $categories = Category::all();
+    return view('test', compact('categories'));
+});
 
 // Not Found Route
 Route::fallback(function () {

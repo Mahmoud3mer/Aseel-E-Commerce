@@ -15,7 +15,7 @@
 }
 
 input[type="number"] {
-    -moz-appearance: textfield;
+    --moz-appearance: textfield;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -166,4 +166,64 @@ input[type="number"]::-webkit-outer-spin-button {
     font-size: 30px;
     font-weight: bold;
     color: #F28123;
+}
+
+.google-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #F28123;
+    font-weight: bold;
+}
+
+.google-icon:hover {
+    text-decoration: underline;
+    color: #dc0202;
+}
+
+.google-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Delete and Edit Buttons Style */
+button.delete-btn {
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    background-color: #dc0202;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+}
+
+button.delete-btn i {
+    margin-right: 5px;
+}
+
+button.delete-btn:hover {
+    background-color: #051922;
+    color: #dc0202;
+}
+
+a.edit-btn {
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    background-color: green;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+a.edit-btn i {
+    margin-right: 5px;
+}
+
+a.edit-btn:hover {
+    background-color: #051922;
+    color: green;
 }

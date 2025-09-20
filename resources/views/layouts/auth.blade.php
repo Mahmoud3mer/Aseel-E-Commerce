@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- My CSS Code --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/myCss/style.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Caprasimo&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 

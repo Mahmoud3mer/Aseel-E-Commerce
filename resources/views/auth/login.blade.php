@@ -30,12 +30,16 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="mb-3" style="text-align: center">
+                <input type="checkbox" name="remember" class="form-check-input mx-2" {{ old('remember') ? 'checked' : '' }}>
+                <label>تذكرني</label>
+            </div>
 
             <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                 <button type="submit" class="btn submit-btn">تسجيل الدخول</button>
-                {{-- <a href="{{ route('auth.google') }}" class="google-icon">
-                        Google <img src="{{asset('google.png')}}" alt="">
-                    </a> --}}
+                <a href="{{ route('auth.google') }}" class="google-icon">
+                    Google <img src="{{asset('assets/google.png')}}" alt="">
+                </a>
                 <a href="{{ route('register') }}" class="btn btn-link">إنشاء حساب جديد</a>
             </div>
         </form>

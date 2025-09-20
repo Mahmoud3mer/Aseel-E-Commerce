@@ -48,18 +48,24 @@
                             <h3>{{ $product->name }}</h3>
                             <p class="product-price"><span>{{ $product->quantity }} Item(s)</span> {{ $product->price }}$
                             </p>
-                            <a href="cart.html" class="btn btn-warning text-light"><i class="fas fa-shopping-cart"></i> أضف
-                                إلى السلة</a>
+                            {{-- <a href="cart.html" class="btn btn-warning text-light"><i class="fas fa-shopping-cart"></i> أضف
+                                إلى السلة</a> --}}
+                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> أضف
+                                إلى السلة </a>
                             @auth
                                 @can('is_admin')
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                         style="display: inline;" class="delete-item-form">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn btn-danger delete-item-btn"><i class="fas fa-trash"></i>
+                                        {{-- <button type="button" class="btn btn-danger delete-item-btn"><i class="fas fa-trash"></i>
+                                            حذف</button> --}}
+                                        <button type="button" class="delete-btn delete-item-btn"><i class="fas fa-trash"></i>
                                             حذف</button>
                                     </form>
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary text-light"><i
+                                    {{-- <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary text-light"><i
+                                            class="fas fa-edit"></i> تعديل </a> --}}
+                                    <a href="{{ route('products.edit', $product->id) }}" class="edit-btn"><i
                                             class="fas fa-edit"></i> تعديل </a>
                                 @endcan
                             @endauth
