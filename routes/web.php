@@ -46,7 +46,13 @@ Route::get('/customers', [CustomersController::class, 'index'])->name('customers
 Route::post('/customers', [CustomersController::class, 'store'])->name('customers.store')->middleware('auth');
 
 // Cart Routes
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::put('/cart/update/{cartItemId}', [CartController::class, 'updateCartItem'])->name('cart.update');
+    Route::delete('/cart/remove/{cartItemId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+});
+
 
 // Test Route
 Route::get('/test', function () {

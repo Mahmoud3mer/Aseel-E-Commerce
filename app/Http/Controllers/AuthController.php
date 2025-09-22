@@ -92,28 +92,25 @@ class AuthController extends Controller
     public function handleGoogleCallback()
     {
         try {
-        $socialUser = Socialite::driver('google')->user();
+            $socialUser = Socialite::driver('google')->user();
 
-        // التحقق مما إذا كان المستخدم موجودًا
-        $user = User::where('google_id', $socialUser->id)->first();
+            $user = User::where('google_id', $socialUser->id)->first();
 
-        if ($user) {
-            // تسجيل دخول المستخدم
-            Auth::login($user);
-            return redirect('/home');
-        } else {
-            // إنشاء مستخدم جديد
-            $newUser = User::create([
-                'name' => $socialUser->name,
-                'email' => $socialUser->email,
-                'google_id' => $socialUser->id,
-                'provider_name' => 'google',
-                'password' => encrypt('password_dummy'), // كلمة مرور وهمية
-            ]);
+            if ($user) {
+                Auth::login($user);
+                return redirect('/home');
+            } else {
+                $newUser = User::create([
+                    'name' => $socialUser->name,
+                    'email' => $socialUser->email,
+                    'google_id' => $socialUser->id,
+                    'provider_name' => 'google',
+                    'password' => encrypt('password_dummy'),
+                ]);
 
-            Auth::login($newUser);
-            return redirect('/home');
-        }
+                Auth::login($newUser);
+                return redirect('/home');
+            }
         } catch (\Exception $e) {
             return redirect('/login')->with('error', 'فشل تسجيل الدخول باستخدام Google.');
         }

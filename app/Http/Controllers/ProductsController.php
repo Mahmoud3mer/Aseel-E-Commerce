@@ -122,7 +122,7 @@ class ProductsController extends Controller
                             ->orWhereHas('category', function ($q) use ($query) {
                                 $q->where('name', 'LIKE', "%{$query}%");
                             })
-                            ->get();
+                            ->paginate(5);
 
         return view('products.index', compact('products'));
     }

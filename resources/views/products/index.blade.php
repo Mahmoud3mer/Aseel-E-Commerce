@@ -23,20 +23,13 @@
     <div class="product-section mt-150 mb-150" style="position: relative;">
         <div class="container">
 
-            {{-- <div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
-                            <li data-filter=".lemon">Lemon</li>
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="row product-lists">
+
+                @empty($products->count())
+                    <div class="col-lg-12 text-center">
+                        <h2>لا توجد منتجات</h2>
+                    </div>
+                @endempty
 
                 @foreach ($products as $product)
                     <div class="col-lg-4 col-md-6 text-center">
@@ -50,8 +43,13 @@
                             </p>
                             {{-- <a href="cart.html" class="btn btn-warning text-light"><i class="fas fa-shopping-cart"></i> أضف
                                 إلى السلة</a> --}}
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> أضف
-                                إلى السلة </a>
+                            {{-- <a href="{{ route('cart.add', $product->id) }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> أضف
+                                إلى السلة </a> --}}
+                                <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-inline cart-form">
+                                    @csrf
+                                    <button type="button" class="cart-btn add-to-cart"><i class="fas fa-shopping-cart"></i> أضف
+                                        إلى السلة </button>
+                                </form>
                             @auth
                                 @can('is_admin')
                                     <form action="{{ route('products.destroy', $product->id) }}" method="POST"
@@ -75,20 +73,6 @@
 
             </div>
 
-            {{-- <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="pagination-wrap">
-                        <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a class="active" href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">Next</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="pagination-wrap">
@@ -101,14 +85,9 @@
 
 
         {{-- Alert --}}
-        <div id="liveAlertPlaceholder" class="fade"></div>
-        {{-- <div class="alert alert-success alert-dismissible fade show" role="alert">
-        You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div> --}}
+        <div id="alertPlaceholder"></div>
         {{-- end Alert --}}
+
     </div>
     <!-- end products -->
 
@@ -125,36 +104,6 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            const response_success = '{{ session('success') }}';
-            const response_error = '{{ session('error') }}';
-            // console.log(response);
-
-            const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-
-            const alert = (message, type) => {
-                const wrapper = document.createElement('div')
-                wrapper.innerHTML = [
-                    `<div class="alert alert-${type} alert-dismissible show-success-msg" role="alert">`,
-                    `<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>`,
-                    `   <div>${message}</div>`,
-                    `</div>`
-                ].join('')
-
-                alertPlaceholder.append(wrapper)
-            }
-
-            if (response_success) {
-                alert(response_success, 'success')
-            }
-
-            if (response_error) {
-                alert(response_error, 'error')
-            }
-
-            $('.btn-close').on('click', function() {
-                $(this).closest('.alert').remove()
-            })
-
             // handle delete button click
             let modal = document.getElementById('modal');
             const backdrop = document.getElementById('modalBackdrop');
@@ -186,6 +135,40 @@
             backdrop.addEventListener('click', function() {
                 modal.style.display = 'none';
                 backdrop.style.display = 'none';
+            });
+
+
+            // Handle Add to Cart button click
+            const alertPlaceholder = document.getElementById('alertPlaceholder');
+
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('add-to-cart')) {
+                    event.preventDefault(); // Prevent the default form submission
+
+                    let form = event.target.closest('.cart-form');                    
+
+                    if (form) {
+                        $.ajax({
+                            url: form.action,
+                            method: 'POST',
+                            data: $(form).serialize(),
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                console.log(response);
+                                let message = response.message || 'تم إضافة المنتج إلى السلة بنجاح.';
+                                if (response.success) {
+                                    alertPlaceholder.innerHTML = `<x-alert :type="'success'" message="${message}" />`
+                                }
+                            },
+                            error: function(xhr) {
+                                // Show error alert
+                                alertPlaceholder.innerHTML = `<x-alert :type="'danger'" message="'حدث خطأ أثناء إضافة المنتج إلى السلة.'" />`;
+                            }
+                        });
+                    }
+                }
             });
         });
     </script>

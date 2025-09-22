@@ -36,36 +36,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-body-row">
-                                    <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a>
-                                    </td>
-                                    <td class="product-image"><img src="assets/img/products/product-img-1.jpg"
-                                            alt=""></td>
-                                    <td class="product-name">Strawberry</td>
-                                    <td class="product-price">$85</td>
-                                    <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                    <td class="product-total">1</td>
-                                </tr>
-                                <tr class="table-body-row">
-                                    <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a>
-                                    </td>
-                                    <td class="product-image"><img src="assets/img/products/product-img-2.jpg"
-                                            alt=""></td>
-                                    <td class="product-name">Berry</td>
-                                    <td class="product-price">$70</td>
-                                    <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                    <td class="product-total">1</td>
-                                </tr>
-                                <tr class="table-body-row">
-                                    <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a>
-                                    </td>
-                                    <td class="product-image"><img src="assets/img/products/product-img-3.jpg"
-                                            alt=""></td>
-                                    <td class="product-name">Lemon</td>
-                                    <td class="product-price">$35</td>
-                                    <td class="product-quantity"><input type="number" placeholder="0"></td>
-                                    <td class="product-total">1</td>
-                                </tr>
+                                @foreach ($carts as $cart)
+                                    <tr class="table-body-row">
+                                        <td class="product-remove">
+                                            <form action="{{ route('cart.remove', $cart->product_id) }}" method="POST"
+                                                style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="remove-product-cart-btn"><i
+                                                        class="far fa-window-close"></i></button>
+                                            </form>
+                                            {{-- <a href="{{ route('cart.remove', $cart->product_id) }}">
+                                                <i class="far fa-window-close"></i>
+                                            </a> --}}
+                                        </td>
+                                        <td class="product-image"><img
+                                                src="{{ asset('upload/' . $cart->product->image_path) }}" alt="">
+                                        </td>
+                                        <td class="product-name">{{ $cart->product->name }}</td>
+                                        <td class="product-price">{{ $cart->product->price }}$</td>
+                                        <td class="product-quantity">
+                                            <form action="{{ route('cart.update', $cart->product_id) }}" method="POST"
+                                                class="d-inline">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="number" name="quantity" value="{{ $cart->quantity }}"
+                                                    id="quantity-{{ $cart->product_id }}" min="1"
+                                                    style="width: 60px; text-align: center;">
+                                                {{-- <input type="number" placeholder="0" value="{{ $cart->quantity }}"> --}}
+                                                <button type="submit" title="تحديث الكمية" class="update-quantity-btn" id="update-btn-{{ $cart->product_id }}">
+                                                    <i class="fas fa-sync-alt"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td class="product-total">{{ $cart->product->price * $cart->quantity }}$</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -83,7 +89,7 @@
                             <tbody>
                                 <tr class="total-data">
                                     <td><strong>Subtotal: </strong></td>
-                                    <td>$500</td>
+                                    <td>${{ $subtotal }}</td>
                                 </tr>
                                 <tr class="total-data">
                                     <td><strong>Shipping: </strong></td>
@@ -91,7 +97,7 @@
                                 </tr>
                                 <tr class="total-data">
                                     <td><strong>Total: </strong></td>
-                                    <td>$545</td>
+                                    <td>${{ $subtotal + 45 }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -116,3 +122,28 @@
     </div>
     <!-- end cart -->
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const input = document.getElementById("quantity-{{ $cart->product_id }}");
+            const button = document.getElementById("update-btn-{{ $cart->product_id }}");
+
+            // console.log(input, button);
+            
+            const originalValue = '{{ $cart->quantity }}';
+
+            function toggleButton() {
+                if ((originalValue == 1 && input.value == originalValue) || input.value <= 1) {
+                    button.disabled = true;
+                } else {
+                    button.disabled = false;
+                }
+            }
+
+            input.addEventListener("input", toggleButton);
+            
+            toggleButton(); 
+        });
+    </script>
+@endpush
