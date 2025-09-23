@@ -4,16 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
+use App\Models\ProductImage;
 
 class Product extends Model
 {
     protected $table = 'products';
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
     protected $fillable = [
         'name',
         'description',
@@ -22,4 +17,14 @@ class Product extends Model
         'category_id',
         'image_path',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }

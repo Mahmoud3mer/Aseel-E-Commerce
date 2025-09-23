@@ -110,7 +110,10 @@
                                     <textarea name="description" id="description" cols="30" rows="10" placeholder="الوصف">{{ old('description') ?? $product->description }}</textarea>
                                 </div>
 
-                                <p class="col-12" style="text-align: end"><input type="submit" value="تحديث"></p>
+                                <p class="col-12" style="text-align: end">
+                                    <a href="{{ route('products.images', $product->id) }}" class="photos-btn">ادارة صور المنتج</a>
+                                    <input type="submit" value="تحديث">
+                                </p>
                             </div>
                         </form>
                     </div>

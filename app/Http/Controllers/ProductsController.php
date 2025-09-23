@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\ProductImage;
 
 class ProductsController extends Controller
 {
@@ -125,5 +126,37 @@ class ProductsController extends Controller
                             ->paginate(5);
 
         return view('products.index', compact('products'));
+    }
+
+    // Manage Product Images
+    public function manageImages($productId)
+    {
+        $product = Product::find($productId);
+
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'المنتج غير موجود');
+        }
+
+        return view('productImages.index', compact('product'));
+    }
+
+    public function destroyImage(Request $request, $imageId)
+    {
+        $image = ProductImage::find($imageId);
+
+        if (!$image) {
+            return redirect()->back()->with('error', 'الصورة غير موجودة');
+        }
+
+        // Delete the image file from the server
+        $imagePath = public_path('upload/' . $image->image_path);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+
+        // Delete the image record from the database
+        $image->delete();
+
+        return redirect()->back()->with('success', 'تم حذف الصورة بنجاح');
     }
 }

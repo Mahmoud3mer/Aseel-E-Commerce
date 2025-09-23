@@ -102,7 +102,7 @@
                             </tbody>
                         </table>
                         <div class="cart-buttons">
-                            <a href="cart.html" class="boxed-btn">Update Cart</a>
+                            {{-- <a href="cart.html" class="boxed-btn">Update Cart</a> --}}
                             <a href="checkout.html" class="boxed-btn black">Check Out</a>
                         </div>
                     </div>

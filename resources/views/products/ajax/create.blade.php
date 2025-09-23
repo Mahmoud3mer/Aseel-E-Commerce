@@ -131,7 +131,9 @@
                                     <textarea name="description" id="description" cols="30" rows="10" placeholder="الوصف">{{ old('description') }}</textarea>
                                 </div>
 
-                                <p class="col-12" style="text-align: end"><input type="submit" value="حفظ"></p>
+                                <p class="col-12" style="text-align: end">
+                                    <input type="submit" value="حفظ">
+                                </p>
                             </div>
                         </form>
                     </div>

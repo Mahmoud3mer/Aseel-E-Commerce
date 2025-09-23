@@ -262,3 +262,79 @@ button.delete-btn:hover {
     cursor: not-allowed;
     color: #ccc;
 }
+
+.photos-btn{
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    background-color: #051922;
+    text-decoration: none;
+    transition: 0.3s ease;
+    font-size: 15px;
+    font-weight: 700;
+}
+.photos-btn:hover{
+    background-color: #F28123;
+    color: #051922;
+}
+
+.product-image-card{
+    position: relative;
+    max-width: 250px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s ease;
+    padding: 0;
+}
+
+.product-image-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 250px;
+}
+
+.product-image-card .remove-image-form{
+    position: absolute;
+    bottom: 10px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: display 0.4s ease-in-out;
+    display: none;
+    z-index: 2;
+}
+
+.product-image-card:hover .remove-image-form{
+    display: flex;
+}
+
+.background-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.product-image-card:hover .background-overlay {
+    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .product-image-card {
+        margin-inline: auto;
+    }
+}
+
