@@ -2,6 +2,15 @@
 
 @section('title', 'Create Product')
 
+@push('datatables.css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endpush
+
+@push('datatables.js')
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+@endpush
+
 @section('content')
     <!-- breadcrumb-section -->
     <div class="breadcrumb-section breadcrumb-bg">
@@ -19,7 +28,7 @@
     <!-- end breadcrumb section -->
 
     <!-- contact form -->
-    <div class="contact-from-section mt-150 mb-150">
+    <div class="contact-from-section mt-150">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
@@ -141,22 +150,103 @@
             </div>
         </div>
 
-        {{-- Alert --}}
-        {{-- @if (session('success') || session('error'))
-            <div class="alert alert-{{ session('success') ? 'success' : 'danger' }} alert-dismissible fade show" role="alert" style="position: fixed; top: 90px; right: 20px; z-index: 1000;">
-                {{ session('success') ?? session('error') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif --}}
-        {{-- end Alert --}}
     </div>
     <!-- end contact form -->
+    <div class="table-responsive">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 products-table">
+                    <table class="table" id="products-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">صورة المنتج</th>
+                                <th scope="col">اسم المنتج</th>
+                                <th scope="col">السعر</th>
+                                <th scope="col">الكمية</th>
+                                {{-- <th scope="col">الوصف</th> --}}
+                                <th scope="col">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td><img src="{{ asset('upload/' . $product->image_path) }}" alt=""
+                                            style="width: 100px;"></td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}$</td>
+                                    <td>{{ $product->quantity }}</td>
+                                    {{-- <td class="product-description">{{ $product->description }}</td> --}}
+                                    <td class="product-table-actions">
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                            style="display: inline;" class="delete-item-form">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="delete-btn delete-item-btn"><i
+                                                    class="fas fa-trash"></i>
+                                                حذف</button>
+                                        </form>
+                                        <a href="{{ route('products.edit', $product->id) }}" class="edit-btn"><i
+                                                class="fas fa-edit"></i> تعديل </a>
+                                        <a href="{{ route('products.show', $product->id) }}" class="show-btn"><i
+                                                class="fas fa-eye"></i> عرض </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Products Table --}}
+    {{-- End Products Table --}}
+
+    {{-- Delete Modal --}}
+    <x-delete-modal />
+    {{-- End Delete Modal --}}
 @endsection
 
 @push('scripts')
     <script>
+        // DataTables
+        $(document).ready(function() {
+            let table = new DataTable('#products-table');
+
+            // handle delete button click
+            let modal = document.getElementById('modal');
+            const backdrop = document.getElementById('modalBackdrop');
+
+            document.addEventListener('click', function(event) {
+                // console.log(event.target);
+
+                if (event.target.classList.contains('delete-item-btn')) {
+                    // console.log('delete button clicked');
+                    let formToDelete = event.target.closest('.delete-item-form');
+
+                    if (modal && formToDelete) {
+                        modal.style.display = 'block';
+                        backdrop.style.display = 'block';
+                        document.getElementById('confirmDeleteBtn').onclick = function() {
+                            formToDelete.submit();
+                        };
+                    }
+                }
+            });
+
+            let cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+            cancelDeleteBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                backdrop.style.display = 'none';
+            });
+
+            backdrop.addEventListener('click', function() {
+                modal.style.display = 'none';
+                backdrop.style.display = 'none';
+            });
+        });
+
+        // Image Preview
         const image = document.getElementById('image');
         const imagePreview = document.getElementById('image-preview');
         const imageLabel = document.getElementById('image-label');

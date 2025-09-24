@@ -43,6 +43,13 @@
             font-family: "Tajawal", sans-serif;
         }
     </style>
+    {{-- End My CSS Code --}}
+
+    {{-- DataTables --}}
+    @stack('datatables.css')
+    @stack('datatables.js')
+    {{-- End DataTables --}}
+
 </head>
 
 <body dir="ltr">

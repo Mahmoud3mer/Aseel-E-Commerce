@@ -31,20 +31,17 @@
                     </div>
                 @endempty
 
+                {{-- Product Card --}}
                 @foreach ($products as $product)
-                    <div class="col-lg-4 col-md-6 text-center">
+                    {{-- <div class="col-lg-4 col-md-6 text-center">
                         <div class="single-product-item">
                             <div class="product-image">
-                                <a href="single-product.html"><img src="{{ asset('upload/' . $product->image_path) }}"
+                                <a href="{{ route('products.show', $product->id) }}"><img src="{{ asset('upload/' . $product->image_path) }}"
                                         alt="" style="min-height: 250px; max-height: 250px;"></a>
                             </div>
                             <h3>{{ $product->name }}</h3>
                             <p class="product-price"><span>{{ $product->quantity }} Item(s)</span> {{ $product->price }}$
                             </p>
-                            {{-- <a href="cart.html" class="btn btn-warning text-light"><i class="fas fa-shopping-cart"></i> أضف
-                                إلى السلة</a> --}}
-                            {{-- <a href="{{ route('cart.add', $product->id) }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> أضف
-                                إلى السلة </a> --}}
                                 <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-inline cart-form">
                                     @csrf
                                     <button type="button" class="cart-btn add-to-cart"><i class="fas fa-shopping-cart"></i> أضف
@@ -56,20 +53,19 @@
                                         style="display: inline;" class="delete-item-form">
                                         @csrf
                                         @method('DELETE')
-                                        {{-- <button type="button" class="btn btn-danger delete-item-btn"><i class="fas fa-trash"></i>
-                                            حذف</button> --}}
                                         <button type="button" class="delete-btn delete-item-btn"><i class="fas fa-trash"></i>
                                             حذف</button>
                                     </form>
-                                    {{-- <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary text-light"><i
-                                            class="fas fa-edit"></i> تعديل </a> --}}
                                     <a href="{{ route('products.edit', $product->id) }}" class="edit-btn"><i
                                             class="fas fa-edit"></i> تعديل </a>
                                 @endcan
                             @endauth
                         </div>
-                    </div>
+                    </div> --}}
+
+                    <x-product-card :product="$product" />
                 @endforeach
+                {{-- End Product Card --}}
 
             </div>
 
@@ -92,12 +88,13 @@
     <!-- end products -->
 
     {{-- My Modal to improve delete --}}
-    <div class="myModalBackdrop" id="modalBackdrop"></div>
-    <div class="myModal" id="modal">
-        <p>هل أنت متأكد أنك تريد حذف هذا العنصر؟</p>
-        <button class="btn btn-danger" id="confirmDeleteBtn">حذف</button>
-        <button class="btn btn-secondary" id="cancelDeleteBtn">إلغاء</button>
-    </div>
+        {{-- <div class="myModalBackdrop" id="modalBackdrop"></div>
+        <div class="myModal" id="modal">
+            <p>هل أنت متأكد أنك تريد حذف هذا العنصر؟</p>
+            <button class="btn btn-danger" id="confirmDeleteBtn">حذف</button>
+            <button class="btn btn-secondary" id="cancelDeleteBtn">إلغاء</button>
+        </div> --}}
+    <x-delete-modal />
     {{-- End My Modal to improve delete --}}
 @endsection
 

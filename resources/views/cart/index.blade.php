@@ -53,7 +53,11 @@
                                         <td class="product-image"><img
                                                 src="{{ asset('upload/' . $cart->product->image_path) }}" alt="">
                                         </td>
-                                        <td class="product-name">{{ $cart->product->name }}</td>
+                                        <td class="product-name">
+                                            <a
+                                                href="{{ route('products.show', $cart->product_id) }}" class="product-name-link" style="font-weight: bold">{{ $cart->product->name }}
+                                            </a>
+                                        </td>
                                         <td class="product-price">{{ $cart->product->price }}$</td>
                                         <td class="product-quantity">
                                             <form action="{{ route('cart.update', $cart->product_id) }}" method="POST"

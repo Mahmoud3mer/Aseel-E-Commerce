@@ -2470,6 +2470,10 @@ a.cart-btn i {
   border-radius: 5px;
   -webkit-box-shadow: 0 0 20px #ddd;
   box-shadow: 0 0 20px #ddd;
+  
+  /* 3mer code */
+  max-height: 450px;
+  min-height: 400px;
 }
 
 .single-product-content h3 {

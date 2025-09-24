@@ -16,9 +16,9 @@ class ProductsController extends Controller
         $category_id = request()->get('category');
 
         if ($category_id) {
-            $products = Product::where('category_id', $category_id)->orderBy('created_at', 'desc')->paginate(5);
+            $products = Product::where('category_id', $category_id)->orderBy('created_at', 'desc')->paginate(6);
         } else {
-            $products = Product::orderBy('created_at', 'desc')->paginate(5);
+            $products = Product::orderBy('created_at', 'desc')->paginate(6);
         }
 
         return view('products.index', compact('products'));
@@ -26,7 +26,8 @@ class ProductsController extends Controller
 
     public function create(){
         $categories = Category::all();
-        return view('products.ajax.create', compact('categories'));
+        $products = Product::with('category', 'images')->get();
+        return view('products.ajax.create', compact('categories', 'products'));
     }
 
     public function store(CreateProductRequest $request){
@@ -107,6 +108,21 @@ class ProductsController extends Controller
         return redirect()->route('products.index')->with('success', 'تم حذف المنتج بنجاح');
     }
 
+    public function show($productId){
+        $product = Product::find($productId)->load('category', 'images');
+
+        $relatedProducts = Product::where('category_id', $product->category_id)
+                                    ->where('id', '!=', $product->id)
+                                    ->take(3)
+                                    ->get();
+
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'المنتج غير موجود');
+        }
+
+        return view('products.ajax.show', compact('product', 'relatedProducts'));
+    }
+
 
     public function search(Request $request)
     {
@@ -123,7 +139,7 @@ class ProductsController extends Controller
                             ->orWhereHas('category', function ($q) use ($query) {
                                 $q->where('name', 'LIKE', "%{$query}%");
                             })
-                            ->paginate(5);
+                            ->paginate(6);
 
         return view('products.index', compact('products'));
     }
@@ -138,6 +154,38 @@ class ProductsController extends Controller
         }
 
         return view('productImages.index', compact('product'));
+    }
+
+    public function addImages(Request $request, $productId)
+    {
+        $product = Product::find($productId);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'المنتج غير موجود');
+        }
+
+        $request->validate([
+            'images.*' => 'required|image|max:2048',
+        ], [
+            'images.*.required' => 'يرجى اختيار صورة لتحميلها.',
+            'images.*.image' => 'الملف يجب أن يكون صورة.',
+            'images.*.max' => 'حجم الصورة لا يجب أن يتجاوز 2 ميجابايت.',
+        ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $extension = $image->getClientOriginalExtension();
+                $fileName = time() . rand(1, 1000) . '.' . $extension;
+                $image->move(public_path('upload'), $fileName);
+
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_path' => $fileName,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'تم إضافة الصور بنجاح');
     }
 
     public function destroyImage(Request $request, $imageId)

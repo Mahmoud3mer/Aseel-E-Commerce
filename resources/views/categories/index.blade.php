@@ -38,37 +38,97 @@
             </div>
 
             <div class="row product-lists">
-
                 @foreach ($products as $product)
-                    <div class="col-lg-4 col-md-6 text-center _{{ $product->category->id }}">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="single-product.html"><img src="{{ asset($product->image_path) }}" alt="" style="min-height: 250px; max-height: 250px;"></a>
-                            </div>
-                            <h3>{{ $product->name }}</h3>
-                            <p class="product-price"><span>{{$product->quantity}} Item(s)</span> {{ $product->price }}$ </p>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                        </div>
-                    </div>
+                    <x-product-card :product="$product" />
                 @endforeach
 
             </div>
-
-            {{-- <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="pagination-wrap">
-                        <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a class="active" href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">Next</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> --}}
         </div>
+
+        {{-- Alert --}}
+        <div id="alertPlaceholder"></div>
+        {{-- end Alert --}}
     </div>
     <!-- end products -->
 
+    {{-- Delete Modal --}}
+    <x-delete-modal />
+    {{-- End Delete Modal --}}
 @endsection
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            // handle delete button click
+            let modal = document.getElementById('modal');
+            const backdrop = document.getElementById('modalBackdrop');
+
+            document.addEventListener('click', function(event) {
+                // console.log(event.target);
+
+                if (event.target.classList.contains('delete-item-btn')) {
+                    // console.log('delete button clicked');
+                    let formToDelete = event.target.closest('.delete-item-form');
+
+                    if (modal && formToDelete) {
+                        modal.style.display = 'block';
+                        backdrop.style.display = 'block';
+                        document.getElementById('confirmDeleteBtn').onclick = function() {
+                            formToDelete.submit();
+                        };
+                    }
+                }
+            });
+
+            let cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+            cancelDeleteBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                backdrop.style.display = 'none';
+            });
+
+            backdrop.addEventListener('click', function() {
+                modal.style.display = 'none';
+                backdrop.style.display = 'none';
+            });
+
+
+            // Handle Add to Cart button click
+            const alertPlaceholder = document.getElementById('alertPlaceholder');
+
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('add-to-cart')) {
+                    event.preventDefault(); // Prevent the default form submission
+
+                    let form = event.target.closest('.cart-form');
+
+                    if (form) {
+                        $.ajax({
+                            url: form.action,
+                            method: 'POST',
+                            data: $(form).serialize(),
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                console.log(response);
+                                let message = response.message ||
+                                    'تم إضافة المنتج إلى السلة بنجاح.';
+                                if (response.success) {
+                                    alertPlaceholder.innerHTML =
+                                        `<x-alert :type="'success'" message="${message}" />`
+                                }
+                            },
+                            error: function(xhr) {
+                                // Show error alert
+                                alertPlaceholder.innerHTML =
+                                    `<x-alert :type="'danger'" message="'حدث خطأ أثناء إضافة المنتج إلى السلة.'" />`;
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

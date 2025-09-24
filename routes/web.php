@@ -32,8 +32,10 @@ Route::post('products', [ProductsController::class, 'store'])->name('products.st
 Route::get('products/{productId}/edit', [ProductsController::class, 'edit'])->name('products.edit')->middleware([ 'auth', 'can:is_admin' ]);
 Route::put('products/{productId}', [ProductsController::class, 'update'])->name('products.update')->middleware([ 'auth', 'can:is_admin' ]);
 Route::delete('products/{productId}', [ProductsController::class, 'destroy'])->name('products.destroy')->middleware([ 'auth', 'can:is_admin' ]);
+Route::get('products/{productId}', [ProductsController::class, 'show'])->name('products.show');
 Route::get('product-images/{productId}', [ProductsController::class, 'manageImages'])->name('products.images')->middleware([ 'auth', 'can:is_admin' ]);
 Route::delete('product-images/{imageId}', [ProductsController::class, 'destroyImage'])->name('products.images.destroy')->middleware([ 'auth', 'can:is_admin' ]);
+Route::post('product-images/{productId}', [ProductsController::class, 'addImages'])->name('products.images.add')->middleware([ 'auth', 'can:is_admin' ]);
 // Search Route
 Route::post('/search', [ProductsController::class, 'search'])->name('products.search');
 
