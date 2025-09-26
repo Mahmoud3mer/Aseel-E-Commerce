@@ -432,3 +432,9 @@ button.delete-btn:hover {
     }
 
 }
+
+.single-product-content .description{
+    white-space: pre-wrap;
+    overflow: hidden;
+    word-wrap: break-word;
+}

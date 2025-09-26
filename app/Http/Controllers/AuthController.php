@@ -30,7 +30,11 @@ class AuthController extends Controller
             'password.min' => 'كلمة المرور يجب أن تكون على الأقل 8 حروف',
         ]);
 
-        $remember = $request->filled('remember');
+        $remember = $request->has('remember');
+
+        if ($remember) {
+            cookie()->queue('remember_email', $request->email, 60*24*3); // 3 days
+        }
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();

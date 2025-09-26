@@ -137,14 +137,19 @@
 
             // Handle Add to Cart button click
             const alertPlaceholder = document.getElementById('alertPlaceholder');
-
+            
             document.addEventListener('click', function(event) {
                 if (event.target.classList.contains('add-to-cart')) {
                     event.preventDefault(); // Prevent the default form submission
 
-                    let form = event.target.closest('.cart-form');                    
+                    let form = event.target.closest('.cart-form');
+                    let addToCartBtn = event.target;                   
 
                     if (form) {
+                        let originalBtnText = event.target.innerHTML;
+                        addToCartBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> جارٍ الإضافة...';
+                        addToCartBtn.disabled = true;
+                        
                         $.ajax({
                             url: form.action,
                             method: 'POST',
@@ -157,11 +162,18 @@
                                 let message = response.message || 'تم إضافة المنتج إلى السلة بنجاح.';
                                 if (response.success) {
                                     alertPlaceholder.innerHTML = `<x-alert :type="'success'" message="${message}" />`
+                                }else if (!response.success) {
+                                    alertPlaceholder.innerHTML = `<x-alert :type="'warning'" message="${message}" />`
                                 }
                             },
                             error: function(xhr) {
                                 // Show error alert
                                 alertPlaceholder.innerHTML = `<x-alert :type="'danger'" message="'حدث خطأ أثناء إضافة المنتج إلى السلة.'" />`;
+                            },
+
+                            complete: function() {
+                                addToCartBtn.innerHTML = originalBtnText;
+                                addToCartBtn.disabled = false;
                             }
                         });
                     }

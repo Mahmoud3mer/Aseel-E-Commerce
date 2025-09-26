@@ -24,9 +24,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <div class="single-product-img">
+                    {{-- <div class="single-product-img">
                         <img src="{{ asset('upload/' . $product->image_path) }}" alt="">
-                    </div>
+                    </div> --}}
+
+                    @if ($product->images->count() > 1)
+                        <div id="carouselExampleIndicators" class="carousel slide mx-auto mt-4" data-ride="carousel"
+                            style="height: 400px;">
+                            <ol class="carousel-indicators">
+                                @foreach ($product->images as $image)
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index }}"
+                                        class="@if ($loop->first) active @endif"></li>
+                                @endforeach
+                            </ol>
+                            <div class="carousel-inner">
+                                @foreach ($product->images as $image)
+                                    <div class="carousel-item @if ($loop->first) active @endif">
+                                        <img class="d-block w-100" src="{{ asset('upload/' . $image->image_path) }}"
+                                            alt="Slide {{ $loop->index + 1 }}" style="height: 400px;">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    @else
+                        <div class="single-product-img">
+                            <img src="{{ asset('upload/' . $product->image_path) }}" alt="">
+                        </div>
+                    @endif
+
                 </div>
                 <div class="col-md-7">
                     <div class="single-product-content">
@@ -35,27 +70,26 @@
                             {{-- <span>Per Kg</span>  --}}
                             {{ $product->price }}$
                         </p>
-                        <p>{{ $product->description }}</p>
+                        <p class="description">{{ $product->description }}</p>
                         <div class="single-product-form">
-                            <form action="index.html">
-                                <input type="number" min="1" max="3" value="1">
+                            <form action="{{ route('cart.update', $product->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="number" min="1" value="{{ old('quantity', 1) }}" name="quantity">
+                                <button type="submit" class="cart-btn add-to-cart"
+                                    style="display: block;margin-bottom: 10px;"><i class="fas fa-shopping-cart"></i> أضف
+                                    إلى السلة </button>
                             </form>
-                            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                             <p><strong>القسم: </strong>{{ $product->category->name }}</p>
                         </div>
-                        <h4>Share:</h4>
-                        <ul class="product-share">
-                            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                            <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-                            <li><a href=""><i class="fab fa-linkedin"></i></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- end single product -->
+
+    {{-- @dd($product->images) --}}
 
     <!-- more products -->
     <div class="more-products mb-150">
@@ -86,3 +120,16 @@
 
     <!-- end more products -->
 @endsection
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.carousel').carousel({
+                interval: 1800 // تغيير الصورة كل 1.8 ثانية
+            });
+
+            $('.carousel').carousel('cycle');
+        });
+    </script>
+@endpush

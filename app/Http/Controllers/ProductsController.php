@@ -109,16 +109,17 @@ class ProductsController extends Controller
     }
 
     public function show($productId){
-        $product = Product::find($productId)->load('category', 'images');
+        // $product = Product::find($productId)->load('category', 'images');
+        $product = Product::with('category', 'images')->find($productId);
+
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', 'المنتج غير موجود');
+        }
 
         $relatedProducts = Product::where('category_id', $product->category_id)
                                     ->where('id', '!=', $product->id)
                                     ->take(3)
                                     ->get();
-
-        if (!$product) {
-            return redirect()->route('products.index')->with('error', 'المنتج غير موجود');
-        }
 
         return view('products.ajax.show', compact('product', 'relatedProducts'));
     }

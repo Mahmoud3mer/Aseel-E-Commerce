@@ -18,7 +18,7 @@
             @csrf
             <div class="mb-3">
                 <label>البريد الإلكتروني</label>
-                <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+                <input type="email" name="email" class="form-control" value="{{ old('email', request()->cookie('remember_email')) }}">
                 @error('email')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
