@@ -10,7 +10,7 @@
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
                         <p>Assel E-Commerce</p>
-                        <h1>Cart</h1>
+                        <h1>عربة التسوق</h1>
                     </div>
                 </div>
             </div>
@@ -28,11 +28,11 @@
                             <thead class="cart-table-head">
                                 <tr class="table-head-row">
                                     <th class="product-remove"></th>
-                                    <th class="product-image">Product Image</th>
-                                    <th class="product-name">Name</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product-quantity">Quantity</th>
-                                    <th class="product-total">Total</th>
+                                    <th class="product-image">صورة المنتج</th>
+                                    <th class="product-name">الاسم</th>
+                                    <th class="product-price">السعر</th>
+                                    <th class="product-quantity">الكمية</th>
+                                    <th class="product-total">الإجمالي</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,10 +80,9 @@
                                             <td class="product-total">{{ $cart->product->price * $cart->quantity }}$</td>
                                         </tr>
                                     @endforeach
-
-                                    @else
+                                @else
                                     <tr>
-                                        <td colspan="6" class="text-center">No items in cart.</td>
+                                        <td colspan="6" class="text-center">لا توجد عناصر في السلة.</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -96,8 +95,8 @@
                         <table class="total-table">
                             <thead class="total-table-head">
                                 <tr class="table-total-row">
-                                    <th>Total</th>
-                                    <th>Price</th>
+                                    <th>الإجمالي</th>
+                                    <th>السعر</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -118,8 +117,9 @@
                         <div class="cart-buttons">
                             {{-- <a href="cart.html" class="boxed-btn">Update Cart</a> --}}
                             @if ($carts->count() > 0)
-                                <a href="{{ route('cart.checkout') }}" class="boxed-btn black">Check Out</a>
+                                <a href="{{ route('cart.checkout') }}" class="boxed-btn black">الدفع</a>
                             @endif
+                            <a href="{{ route('cart.orders') }}" class="boxed-btn">طلبات سابقة</a>
                         </div>
                     </div>
 
@@ -139,27 +139,29 @@
     <!-- end cart -->
 @endsection
 
-@push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const input = document.getElementById("quantity-{{ $cart->product_id }}");
-            const button = document.getElementById("update-btn-{{ $cart->product_id }}");
+@if ($carts->count() > 0)
+    @push('scripts')
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const input = document.getElementById("quantity-{{ $cart->product_id }}");
+                const button = document.getElementById("update-btn-{{ $cart->product_id }}");
 
-            // console.log(input, button);
+                // console.log(input, button);
 
-            const originalValue = '{{ $cart->quantity }}';
+                const originalValue = '{{ $cart->quantity }}';
 
-            function toggleButton() {
-                if ((originalValue == 1 && input.value == originalValue) || input.value <= 1) {
-                    button.disabled = true;
-                } else {
-                    button.disabled = false;
+                function toggleButton() {
+                    if ((originalValue == 1 && input.value == originalValue) || input.value <= 1) {
+                        button.disabled = true;
+                    } else {
+                        button.disabled = false;
+                    }
                 }
-            }
 
-            input.addEventListener("input", toggleButton);
+                input.addEventListener("input", toggleButton);
 
-            toggleButton();
-        });
-    </script>
-@endpush
+                toggleButton();
+            });
+        </script>
+    @endpush
+@endif

@@ -98,6 +98,7 @@ class CartController extends Controller
     }
 
     public function storeOrder(Request $request){
+        // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -155,5 +156,12 @@ class CartController extends Controller
         Cart::where('user_id', $user_id)->delete();
         return redirect()->route('products.index')->with('success', 'تم إنشاء الطلب بنجاح. شكراً لتسوقك معنا!');
 
+    }
+
+
+    public function orderHistory()
+    {
+        $orders = Order::where('user_id', auth()->id())->with('orderItems.product')->orderBy('created_at', 'desc')->get();
+        return view('cart.orders', compact('orders'));
     }
 }

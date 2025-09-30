@@ -9,7 +9,7 @@
         <h3>
             <a href="{{ route('products.show', $product->id) }}" class="product-name-link">{{ $product->name }}</a>
         </h3>
-        <p class="product-price"><span>{{ $product->quantity }} Item(s)</span> {{ $product->price }}$
+        <p class="product-price"><span class="{{ $product->quantity == 0 ? 'out-of-stock' : '' }}">{{ $product->quantity }} Item(s)</span> {{ $product->price }}$
         </p>
         <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-inline cart-form">
             @csrf

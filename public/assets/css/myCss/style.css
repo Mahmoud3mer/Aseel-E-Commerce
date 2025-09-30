@@ -438,3 +438,8 @@ button.delete-btn:hover {
     overflow: hidden;
     word-wrap: break-word;
 }
+
+.out-of-stock {
+    color: red;
+    font-weight: bold !important;
+}

@@ -30,7 +30,7 @@
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" type="button" data-toggle="collapse"
                                             data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Billing Address
+                                            عنوان الفاتورة
                                         </button>
                                     </h5>
                                 </div>
@@ -39,15 +39,47 @@
                                     data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="billing-address-form">
-                                            <form action="index.html" method="POST">
+                                            <form action="{{ route('cart.checkout.store') }}" method="POST" id="order-form">
                                                 @csrf
                                                 @method('POST')
-                                                <p><input type="text" name="name" id="name" placeholder="Name"></p>
-                                                <p><input type="email" name="email" id="email" placeholder="Email"></p>
-                                                <p><input type="text" name="address" id="address" placeholder="Address"></p>
-                                                <p><input type="tel" name="phone" id="phone" placeholder="Phone"></p>
                                                 <p>
-                                                    <textarea name="note" id="note" cols="30" rows="10" placeholder="Say Something"></textarea>
+                                                    <input type="text" name="name" id="name" placeholder="الاسم"
+                                                        value="{{ old('name') }}">
+                                                    <span class="text-danger">
+                                                        @error('name')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
+                                                </p>
+                                                <p>
+                                                    <input type="email" name="email" id="email" placeholder="البريد الالكتروني"
+                                                        value="{{ old('email') }}">
+                                                    <span class="text-danger">
+                                                        @error('email')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
+                                                </p>
+                                                <p>
+                                                    <input type="text" name="address" id="address"
+                                                        placeholder="العنوان" value="{{ old('address') }}">
+                                                    <span class="text-danger">
+                                                        @error('address')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
+                                                </p>
+                                                <p>
+                                                    <input type="tel" name="phone" id="phone" placeholder="رقم الهاتف"
+                                                        value="{{ old('phone') }}">
+                                                    <span class="text-danger">
+                                                        @error('phone')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
+                                                </p>
+                                                <p>
+                                                    <textarea name="note" id="note" cols="30" rows="10" placeholder="أضف ملاحظة">{{ old('note') }}</textarea>
                                                 </p>
                                             </form>
                                         </div>
@@ -59,7 +91,7 @@
                                     <h5 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Shipping Address
+                                            عنوان الشحن
                                         </button>
                                     </h5>
                                 </div>
@@ -67,7 +99,7 @@
                                     data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shipping-address-form">
-                                            <p>Your shipping address form is here.</p>
+                                            <p>نموذج عنوان الشحن هنا.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -101,14 +133,14 @@
                         <table class="order-details">
                             <thead>
                                 <tr>
-                                    <th>Your order Details</th>
-                                    <th>Price</th>
+                                    <th>تفاصيل الطلب</th>
+                                    <th>السعر</th>
                                 </tr>
                             </thead>
                             <tbody class="order-details-body">
                                 <tr>
-                                    <td style="font-weight: bold;">Product</td>
-                                    <td style="font-weight: bold;">Total</td>
+                                    <td style="font-weight: bold;">المنتج</td>
+                                    <td style="font-weight: bold;">الإجمالي</td>
                                 </tr>
                                 @foreach ($carts as $cart)
                                     <tr>
@@ -133,7 +165,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="#" class="boxed-btn">Place Order</a>
+                        <div class="order-button-payment">
+                            <button type="submit" form="order-form" class="cart-btn mt-2">تأكيد الطلب</button>
+                        </div>
                     </div>
                 </div>
             </div>
