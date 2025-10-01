@@ -52,7 +52,7 @@
 
 </head>
 
-<body dir="ltr">
+<body lang="{{App::getLocale()}}" dir="{{App::getLocale() == 'ar' ? 'rtl' : 'ltr'}}">
 
     <!--PreLoader-->
     <div class="loader">

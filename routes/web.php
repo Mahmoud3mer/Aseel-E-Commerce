@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Models\Category;
@@ -60,6 +61,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/previous-orders', [CartController::class, 'orderHistory'])->name('cart.orders');
 });
 
+// Localization Route
+Route::get('/language/switch', [LanguageController::class, 'switch'])->name('language.switch');
 
 // Test Route
 Route::get('/test', function () {

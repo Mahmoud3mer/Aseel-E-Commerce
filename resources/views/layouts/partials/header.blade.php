@@ -1,3 +1,15 @@
+@php
+    $currentLang = app()->getLocale();
+    $languages = [
+        'en' => ['name' => 'English', 'flag' => '🇺🇸'], 
+        'ar' => ['name' => 'العربية', 'flag' => '🇸🇦'],
+    ];
+
+    // استبعاد اللغة الحالية من القائمة المنسدلة
+    $dropdownLangs = array_diff_key($languages, [$currentLang => null]);
+    $currentLangData = $languages[$currentLang] ?? ['name' => 'Lang', 'flag' => '🌐'];
+@endphp
+
 <!-- header -->
 <div class="top-header-area" id="sticker">
     <div class="container">
@@ -13,7 +25,7 @@
                     <!-- logo -->
 
                     <!-- menu start -->
-                    <nav class="main-menu" dir="rtl">
+                    <nav class="main-menu">
                         <ul>
                             <li class="{{ request()->routeIs('home') ? 'current-list-item' : '' }}"><a
                                     href="{{ route('home') }}">الرئيسية</a></li>
@@ -33,6 +45,24 @@
                             <li class="{{ request()->routeIs('customers.index') ? 'current-list-item' : '' }}"><a
                                     href="{{ route('customers.index') }}"> أراء العملاء </a></li>
                             <li><a href="about.html">من نحن</a></li>
+                            <li class="language-dropdown-container">
+                                <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+                                    {{-- <span class="flag">{{ $currentLangData['flag'] }}</span> --}}
+                                    <span class="name">{{ $currentLangData['name'] }}</span>
+                                    {{-- <span class="arrow">▼</span> --}}
+                                </button>
+
+                                <div class="dropdown-menu-items">
+                                    @foreach ($dropdownLangs as $langCode => $langData)
+                                        <div>
+                                            <a href="{{ route('language.switch') }}?lang={{ $langCode }}">
+                                                {{-- <span class="flag">{{ $langData['flag'] }}</span> --}}
+                                                <span class="name">{{ $langData['name'] }}</span>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </li>
                             @if (!auth()->user())
                                 <li><a href="{{ route('login') }}"> تسجيل الدخول </a></li>
                             @endif
@@ -45,11 +75,12 @@
                                             @csrf
                                             <button type="submit"
                                                 style="background:none; border:none; color:red;cursor:pointer; outline:none; font-weight:bold;">
-                                                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                                                <i class="fas fa-sign-out-alt"></i> {{ __('auth.logout') }}
                                             </button>
                                         </form>
                                     @endauth
-                                    <a class="shopping-cart" href="{{ route('cart.show') }}"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="shopping-cart" href="{{ route('cart.show') }}"><i
+                                            class="fas fa-shopping-cart"></i></a>
                                     <a class="mobile-hide search-bar-icon" href="#"><i
                                             class="fas fa-search"></i></a>
                                 </div>
@@ -77,3 +108,27 @@
     </div>
 </div>
 <!-- end header -->
+
+
+@push('scripts')
+    <script>
+        function toggleDropdown(button) {
+            const container = button.closest('.language-dropdown-container');
+            container.classList.toggle('open');
+
+            document.querySelectorAll('.language-dropdown-container.open').forEach(openContainer => {
+                if (openContainer !== container) {
+                    openContainer.classList.remove('open');
+                }
+            });
+        }
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.language-dropdown-container')) {
+                document.querySelectorAll('.language-dropdown-container.open').forEach(openContainer => {
+                    openContainer.classList.remove('open');
+                });
+            }
+        });
+    </script>
+@endpush

@@ -7,7 +7,7 @@
     <div class="breadcrumb-section breadcrumb-bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
                         <p>Assel E-Commerce</p>
                         <h1>ادارة صور المنتج</h1>
@@ -22,7 +22,7 @@
     <div class="contact-from-section mt-150 mb-150">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="section-title">
                         <h3>
                             <span class="orange-text">ادارة</span>
