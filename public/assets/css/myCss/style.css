@@ -444,7 +444,7 @@ button.delete-btn:hover {
     font-weight: bold !important;
 }
 
-.section-title-header{
+.section-title-header {
     margin-inline: auto !important;
 }
 
@@ -455,6 +455,17 @@ button.delete-btn:hover {
     padding: 0 !important;
     margin: 0 !important;
     display: inline-block !important;
+}
+
+@media (max-width: 992px) {
+    .language-dropdown-container {
+        padding: 0.5em 5% !important;
+    }
+
+    .main-menu-wrap {
+        direction: ltr !important;
+    }
+
 }
 
 .dropdown-toggle {
@@ -498,7 +509,7 @@ button.delete-btn:hover {
     display: none !important;
     opacity: 0 !important;
     transition: opacity 0.3s !important;
-    transform : 0.3s !important;
+    transform: 0.3s !important;
     transform: translateY(-10px) !important;
 }
 
@@ -518,7 +529,7 @@ button.delete-btn:hover {
     transition: background-color 0.2s, color 0.2s !important;
 }
 
-.dropdown-menu-items div a span.name{
+.dropdown-menu-items div a span.name {
     padding-inline: 3px !important;
 }
 

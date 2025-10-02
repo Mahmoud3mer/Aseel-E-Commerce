@@ -12,11 +12,12 @@
                     <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle" style="text-align: center;">جمال وتألق</p>
-                                <h1 style="text-align: center;">اكتشفي أحدث مجموعات المكياج</h1>
+                                <p class="subtitle" style="text-align: center;">{{ __('app.slider1.subtitle') }}</p>
+                                <h1 style="text-align: center;">{{ __('app.slider1.title') }}</h1>
                                 <div class="hero-btns d-flex justify-content-center">
-                                    <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
-                                    <a href="contact.html" class="bordered-btn">تواصل معنا</a>
+                                    <a href="{{ route('products.index') }}"
+                                        class="boxed-btn">{{ __('app.browse_products') }}</a>
+                                    <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -31,11 +32,12 @@
                     <div class="col-lg-10 offset-lg-1 text-center">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle">أناقة وعصرية</p>
-                                <h1>شنط فاخرة لكل المناسبات</h1>
+                                <p class="subtitle">{{ __('app.slider2.subtitle') }}</p>
+                                <h1>{{ __('app.slider2.title') }}</h1>
                                 <div class="hero-btns">
-                                    <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
-                                    <a href="contact.html" class="bordered-btn">تواصل معنا</a>
+                                    <a href="{{ route('products.index') }}"
+                                        class="boxed-btn">{{ __('app.browse_products') }}</a>
+                                    <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -50,11 +52,12 @@
                     <div class="col-lg-10 offset-lg-1 text-right">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle" style="text-align: center;">راحة وأناقة</p>
-                                <h1 style="text-align: center;">خطوة واثقة مع أحدث الأحذية</h1>
+                                <p class="subtitle" style="text-align: center;">{{ __('app.slider3.subtitle') }}</p>
+                                <h1 style="text-align: center;">{{ __('app.slider3.title') }}</h1>
                                 <div class="hero-btns d-flex justify-content-center">
-                                    <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
-                                    <a href="contact.html" class="bordered-btn">تواصل معنا</a>
+                                    <a href="{{ route('products.index') }}"
+                                        class="boxed-btn">{{ __('app.browse_products') }}</a>
+                                    <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -69,11 +72,12 @@
                     <div class="col-lg-10 offset-lg-1 text-right">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle" style="text-align: center;">التقط اللحظة</p>
-                                <h1 style="text-align: center;">أفضل الكاميرات لكل لقطة</h1>
+                                <p class="subtitle" style="text-align: center;">{{ __('app.slider4.subtitle') }}</p>
+                                <h1 style="text-align: center;">{{ __('app.slider4.title') }}</h1>
                                 <div class="hero-btns  d-flex justify-content-center">
-                                    <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
-                                    <a href="contact.html" class="bordered-btn">تواصل معنا</a>
+                                    <a href="{{ route('products.index') }}"
+                                        class="boxed-btn">{{ __('app.browse_products') }}</a>
+                                    <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -88,11 +92,12 @@
                     <div class="col-lg-10 offset-lg-1 text-right">
                         <div class="hero-text">
                             <div class="hero-text-tablecell">
-                                <p class="subtitle">ذكاء وابتكار</p>
-                                <h1>أحدث الإلكترونيات بين يديك</h1>
+                                <p class="subtitle">{{ __('app.slider5.subtitle') }}</p>
+                                <h1>{{ __('app.slider5.title') }}</h1>
                                 <div class="hero-btns">
-                                    <a href="{{ route('products.index') }}" class="boxed-btn">تصفح المنتجات</a>
-                                    <a href="contact.html" class="bordered-btn">تواصل معنا</a>
+                                    <a href="{{ route('products.index') }}"
+                                        class="boxed-btn">{{ __('app.browse_products') }}</a>
+                                    <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -103,6 +108,7 @@
     </div>
     <!-- end home page slider -->
 
+
     <!-- product section -->
     <div class="product-section mt-150 mb-150">
         <div class="container">
@@ -110,12 +116,9 @@
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="section-title">
                         <h3>
-                            {{-- <span class="orange-text">Our</span> --}}
-                            <span class="orange-text">أقسام</span>
-                            الموقع
+                            <span class="orange-text">{{ __('app.home_section.title') }}</span>
                         </h3>
-                        <p>اكتشف جميع الأقسام المتنوعة التي نوفرها لك، من الإلكترونيات والموضة إلى المأكولات والإكسسوارات،
-                            لتجد كل ما تحتاجه في مكان واحد.</p>
+                        <p>{{ __('app.home_section.description') }}</p>
                     </div>
                 </div>
             </div>
@@ -146,5 +149,3 @@
     <!-- end product section -->
 
 @endsection
-
-

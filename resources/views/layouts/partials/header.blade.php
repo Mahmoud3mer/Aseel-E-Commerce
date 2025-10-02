@@ -28,23 +28,23 @@
                     <nav class="main-menu">
                         <ul>
                             <li class="{{ request()->routeIs('home') ? 'current-list-item' : '' }}"><a
-                                    href="{{ route('home') }}">الرئيسية</a></li>
+                                    href="{{ route('home') }}">{{ __('app.home') }}</a></li>
                             <li class="{{ request()->routeIs('products.index') ? 'current-list-item' : '' }}"><a
-                                    href="{{ route('products.index') }}">المنتجات</a></li>
+                                    href="{{ route('products.index') }}">{{ __('app.products') }}</a></li>
                             <li class="{{ request()->routeIs('categories.index') ? 'current-list-item' : '' }}"><a
-                                    href="{{ route('categories.index') }}">الأقسام</a></li>
+                                    href="{{ route('categories.index') }}">{{ __('app.categories') }}</a></li>
                             @auth
                                 @can('is_admin')
                                     <li class="{{ request()->routeIs('products.create') ? 'current-list-item' : '' }}"><a
-                                            href="{{ route('products.create') }}">اضافة منتج</a></li>
+                                            href="{{ route('products.create') }}">{{ __('app.add_product') }}</a></li>
                                     <li class="{{ request()->routeIs('categories.create') ? 'current-list-item' : '' }}"><a
-                                            href="{{ route('categories.create') }}">اضافة قسم</a></li>
+                                            href="{{ route('categories.create') }}">{{ __('app.add_category') }}</a></li>
                                 @endcan
                             @endauth
 
                             <li class="{{ request()->routeIs('customers.index') ? 'current-list-item' : '' }}"><a
-                                    href="{{ route('customers.index') }}"> أراء العملاء </a></li>
-                            <li><a href="about.html">من نحن</a></li>
+                                    href="{{ route('customers.index') }}"> {{ __('app.reviews') }} </a></li>
+                            <li><a href="about.html">{{ __('app.about_us') }}</a></li>
                             <li class="language-dropdown-container">
                                 <button class="dropdown-toggle" onclick="toggleDropdown(this)">
                                     {{-- <span class="flag">{{ $currentLangData['flag'] }}</span> --}}
@@ -64,7 +64,7 @@
                                 </div>
                             </li>
                             @if (!auth()->user())
-                                <li><a href="{{ route('login') }}"> تسجيل الدخول </a></li>
+                                <li><a href="{{ route('login') }}">{{ __('app.login') }}</a></li>
                             @endif
                             <li>
                                 <div class="header-icons">
@@ -95,7 +95,7 @@
                             @csrf
                             <button type="submit"
                                 style="background:none; border:none; color:red;cursor:pointer; outline:none; font-weight:bold;">
-                                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                                <i class="fas fa-sign-out-alt"></i> {{ __('auth.logout') }}
                             </button>
                         </form>
                     @endauth
