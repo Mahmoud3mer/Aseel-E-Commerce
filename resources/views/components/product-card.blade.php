@@ -13,8 +13,8 @@
         </p>
         <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-inline cart-form">
             @csrf
-            <button type="button" class="cart-btn add-to-cart"><i class="fas fa-shopping-cart"></i> أضف
-                إلى السلة </button>
+            <button type="button" class="cart-btn add-to-cart"><i class="fas fa-shopping-cart"></i>
+                {{__('app.add_to_cart')}} </button>
         </form>
         @auth
             @can('is_admin')
@@ -23,9 +23,9 @@
                     @csrf
                     @method('DELETE')
                     <button type="button" class="delete-btn delete-item-btn"><i class="fas fa-trash"></i>
-                        حذف</button>
+                        {{__('app.delete')}}</button>
                 </form>
-                <a href="{{ route('products.edit', $product->id) }}" class="edit-btn"><i class="fas fa-edit"></i> تعديل </a>
+                <a href="{{ route('products.edit', $product->id) }}" class="edit-btn mt-1"><i class="fas fa-edit"></i> {{__('app.edit')}} </a>
             @endcan
         @endauth
     </div>

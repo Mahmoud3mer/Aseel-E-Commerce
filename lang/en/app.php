@@ -34,5 +34,9 @@ return [
         'title' => 'Website Sections',
         'description' => 'Discover all the diverse sections we offer you, from electronics and fashion to food and accessories, so you can find everything you need in one place.',
     ],
+    'products' => 'products',
+    'add_to_cart' => 'Add to cart',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
 ];
 

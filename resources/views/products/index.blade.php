@@ -11,7 +11,7 @@
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
                         <p>Assel E-Commerce</p>
-                        <h1>المنتجات</h1>
+                        <h1>{{__('app.products')}}</h1>
                     </div>
                 </div>
             </div>
