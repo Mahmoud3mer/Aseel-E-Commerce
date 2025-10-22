@@ -17,7 +17,7 @@ a {
 
     &:hover {
       background-color: $text-color;
-      color: $primary-color;
+      color: $main-color;
     }
   }
 
@@ -25,7 +25,7 @@ a {
     transition: 0.3s;
 
     &:hover {
-      background-color: $primary-color;
+      background-color: $main-color;
       color: $white-color;
     }
   }
@@ -37,7 +37,7 @@ ul.sub-menu {
   }
 
   li:hover a {
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -54,7 +54,7 @@ a.video-play-btn {
 
   &:hover {
     background-color: #333;
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -76,7 +76,7 @@ a.tof-btn {
       margin-left: 10px;
     }
 
-    color: $primary-color;
+    color: $main-color;
   }
 
   transition: 0.3s;
@@ -107,7 +107,7 @@ a.tof-btn {
     }
 
     &:hover a {
-      color: $primary-color;
+      color: $main-color;
     }
   }
 
@@ -115,7 +115,7 @@ a.tof-btn {
     transition: 0.3s;
 
     &:hover {
-      background-color: $primary-color;
+      background-color: $main-color;
       color: $text-color;
     }
   }
@@ -123,7 +123,7 @@ a.tof-btn {
 
 .social-icons ul li {
   &:hover a {
-    color: $primary-color;
+    color: $main-color;
   }
 
   a {
@@ -136,7 +136,7 @@ ul.social-link-team li a {
 
   &:hover {
     background-color: $text-color;
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -154,7 +154,7 @@ input[type="submit"] {
 
   &:hover {
     background-color: $text-color;
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -172,7 +172,7 @@ div.owl-controls div.owl-nav div:hover {
   }
 
   &:hover a {
-    background-color: $primary-color;
+    background-color: $main-color;
   }
 }
 
@@ -182,7 +182,7 @@ div.owl-controls div.owl-nav div:hover {
   }
 
   &:hover i {
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -212,7 +212,7 @@ a.cart-btn {
 
   &:hover {
     background-color: $text-color;
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -230,7 +230,7 @@ ul.sub-menu li {
   }
 
   &:hover a {
-    color: $primary-color !important;
+    color: $main-color !important;
   }
 }
 
@@ -246,7 +246,7 @@ ul.sub-menu li {
   transition: 0.3s;
 
   &:hover {
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -256,7 +256,7 @@ ul.product-share li {
   }
 
   &:hover a {
-    color: $primary-color;
+    color: $main-color;
   }
 }
 
@@ -302,6 +302,6 @@ a.mobile-show.search-bar-icon {
   transition: 0.3s;
 
   &:hover {
-    color: $primary-color;
+    color: $main-color;
   }
 }

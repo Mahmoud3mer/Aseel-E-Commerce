@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create Category')
+@section('title', __('app.add_category'))
 
 @section('content')
     <!-- breadcrumb-section -->
@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>اضافة قسم جديد</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.add_category') }}</h1>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="section-title">
                         <h3>
-                            <span class="orange-text">اضافة</span>
-                            قسم جديد
+                            <span class="orange-text">{{ __('app.add') }}</span>
+                            {{ __('app.new_category') }}
                         </h3>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                 {{-- inputs --}}
                                 <div class="col-12 col-md-6 p-0">
                                     <div class="form-group col-md-12">
-                                        <input type="text" placeholder="اسم القسم" name="name" id="name"
+                                        <input type="text" placeholder="{{ __('app.category_name') }}" name="name" id="name"
                                             value="{{ old('name') }}">
                                         @error('name')
                                             <div class="text-danger">{{ $message }}</div>
@@ -58,7 +58,7 @@
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <textarea name="description" id="description" cols="20" rows="6" placeholder="الوصف">{{ old('description') }}</textarea>
+                                        <textarea name="description" id="description" cols="20" rows="6" placeholder="{{ __('app.description') }}">{{ old('description') }}</textarea>
                                     </div>
 
                                 </div>
@@ -72,7 +72,7 @@
                                         <span class="remove-image" id="remove-image">x</span>
                                         <label class="input-group-text label-file-input" for="image" id="image-label">
                                             <span>
-                                                صورة القسم
+                                                {{ __('app.image') }}
                                             </span>
                                         </label>
                                         @error('image_path')
@@ -85,7 +85,7 @@
                                     <textarea name="description" id="description" cols="30" rows="10" placeholder="الوصف">{{ old('description') }}</textarea>
                                 </div> --}}
 
-                                <p class="col-12" style="text-align: end"><input type="submit" value="حفظ"></p>
+                                <p class="col-12" style="text-align: end"><input type="submit" value="{{ __('app.save') }}"></p>
                             </div>
                         </form>
                     </div>

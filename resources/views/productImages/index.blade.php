@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Manage Product Images')
+@section('title', __('app.manage_product_images'))
 
 @section('content')
     <!-- breadcrumb-section -->
@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>ادارة صور المنتج</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.manage_product_images') }}</h1>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="section-title">
                         <h3>
-                            <span class="orange-text">ادارة</span>
-                            صور المنتج
+                            <span class="orange-text">{{ __('app.manage') }}</span>
+                            {{ __('app.product_images') }}
                         </h3>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
 
                             <label class="input-group-text label-file-input" for="images" id="image-label">
                                 <span>
-                                    حدد صورة واحدة أو مجموعة من الصور
+                                    {{ __('app.select_images') }}
                                 </span>
                             </label>
                             @error('images.*')
@@ -55,7 +55,7 @@
                         </div>
 
                         <p class="col-12" style="text-align: end">
-                            <input type="submit" value="رفع الصور">
+                            <input type="submit" value="{{ __('app.upload_images') }}">
                         </p>
                     </form>
                 </div>
@@ -73,7 +73,7 @@
 
                 @empty($product->images)
                     <div class="alert alert-info">
-                        لا توجد صور لهذا المنتج.
+                        {{ __('app.no_product_images') }}
                     </div>
                 @endempty
 
@@ -82,10 +82,10 @@
                         <div style="margin-bottom: 20px;" class="col-12 col-md-3 text-center product-image-card">
                             <img src="{{ asset('upload/' . $image->image_path) }}" alt="Product Image">
                             <form action="{{ route('products.images.destroy', $image->id) }}" method="POST"
-                                onsubmit="return confirm('هل أنت متأكد من حذف هذه الصورة؟');" class="remove-image-form">
+                                onsubmit="return confirm('{{ __('app.confirm_delete_image') }}');" class="remove-image-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">حذف الصورة</button>
+                                <button type="submit" class="btn btn-danger">{{ __('app.delete_image') }}</button>
                             </form>
                             <div class="background-overlay"></div>
                         </div>

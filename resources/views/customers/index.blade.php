@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Customer Reviews')
+@section('title',  __('app.reviews'))
 
 @section('content')
     <!-- breadcrumb-section -->
@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1> أراء العملاء </h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.reviews') }}</h1>
                     </div>
                 </div>
             </div>
@@ -26,13 +26,13 @@
                     <div class="section-title">
                         @if(auth()->user())
                             <h3>
-                                <span class="orange-text">اضافة</span>
-                                رأي جديد
+                                <span class="orange-text">{{ __('app.add') }}</span>
+                                {{ __('app.new_review') }}
                             </h3>
                         @else
                             <h3>
-                                <span class="orange-text">جميع</span>
-                                الأراء
+                                <span class="orange-text">{{ __('app.all') }}</span>
+                                {{ __('app.reviews') }}
                             </h3>
                         @endif
                     </div>
@@ -57,7 +57,7 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-6 col-12">
-                                        <input type="text" placeholder="رقم محمول" name="phone" id="phone"
+                                        <input type="text" placeholder="{{ __('app.phone') }}" name="phone" id="phone"
                                             value="{{ old('phone') }}">
                                         @error('phone')
                                             <div class="text-danger">{{ $message }}</div>
@@ -65,7 +65,7 @@
                                     </div>
 
                                     <div class="form-group col-md-6 col-12">
-                                        <input type="text" placeholder="الموضوع" name="subject" id="subject"
+                                        <input type="text" placeholder="{{ __('app.subject') }}" name="subject" id="subject"
                                             value="{{ old('subject') }}">
                                         @error('subject')
                                             <div class="text-danger">{{ $message }}</div>
@@ -73,13 +73,13 @@
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="أكتب رأيك...">{{old('comment')}}</textarea>
+                                        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="{{ __('app.write_your_review') }}">{{old('comment')}}</textarea>
                                         @error('comment')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
-                                    <p class="col-12" style="text-align: end"><input type="submit" value="حفظ"></p>
+                                    <p class="col-12" style="text-align: end"><input type="submit" value="{{ __('app.save') }}"></p>
                                 </div>
                             </form>
                         </div>
@@ -92,7 +92,7 @@
     <!-- end contact form -->
 
     	<!-- testimonail-section -->
-	<div class="testimonail-section mt-30 mb-150">
+	<div class="testimonail-section mt-30 mb-150" dir="ltr">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1 text-center">

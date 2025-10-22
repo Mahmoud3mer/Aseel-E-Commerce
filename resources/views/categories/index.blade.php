@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Categories')
+@section('title', __('app.categories'))
 
 @section('content')
 
@@ -10,8 +10,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>الأقسام</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.categories') }}</h1>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="col-md-12">
                     <div class="product-filters">
                         <ul>
-                            <li class="active" data-filter="*">الكل</li>
+                            <li class="active" data-filter="*">{{ __('app.all') }}</li>
 
                             @foreach ($categories as $category)
                                 <li data-filter="._{{ $category->id }}">{{ $category->name }}</li>

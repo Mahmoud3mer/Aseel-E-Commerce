@@ -44,7 +44,7 @@
 
                             <li class="{{ request()->routeIs('customers.index') ? 'current-list-item' : '' }}"><a
                                     href="{{ route('customers.index') }}"> {{ __('app.reviews') }} </a></li>
-                            <li><a href="about.html">{{ __('app.about_us') }}</a></li>
+                            <li class=" {{request()->routeIs('about-us') ? 'current-list-item' : '' }} "><a href="{{ route('about-us') }}">{{ __('app.about_us') }}</a></li>
                             <li class="language-dropdown-container">
                                 <button class="dropdown-toggle" onclick="toggleDropdown(this)">
                                     {{-- <span class="flag">{{ $currentLangData['flag'] }}</span> --}}

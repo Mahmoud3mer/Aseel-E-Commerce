@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title',  __('app.product_details'))
 
 @section('content')
 
@@ -10,8 +10,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>تفاصيل المنتج</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.product_details') }}</h1>
                     </div>
                 </div>
             </div>
@@ -77,10 +77,9 @@
                                 @method('PUT')
                                 <input type="number" min="1" value="{{ old('quantity', 1) }}" name="quantity">
                                 <button type="submit" class="cart-btn add-to-cart"
-                                    style="display: block;margin-bottom: 10px;"><i class="fas fa-shopping-cart"></i> أضف
-                                    إلى السلة </button>
+                                    style="display: block;margin-bottom: 10px;"><i class="fas fa-shopping-cart"></i>{{ __('app.add_to_cart') }}</button>
                             </form>
-                            <p><strong>القسم: </strong>{{ $product->category->name }}</p>
+                            <p><strong>{{ __('app.category') }} : </strong>{{ $product->category->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -97,9 +96,9 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="section-title">
-                        <h3><span class="orange-text">منتجات</span> ذات صلة</h3>
+                        <h3><span class="orange-text">{{ __('app.products') }}</span> {{ __('app.related') }}</h3>
                         <p>
-                            هذه بعض المنتجات ذات الصلة التي قد تعجبك
+                            {{ __('app.discover_related_products') . ' ' . $product->category->name }}
                         </p>
                     </div>
                 </div>
@@ -108,7 +107,7 @@
                 {{-- @dd($relatedProducts) --}}
 
                 @if ($relatedProducts->isEmpty())
-                    <h3 class="text-center col-12">لا توجد منتجات ذات صلة</h3>
+                    <h3 class="text-center col-12">{{ __('app.no_related_products') }}</h3>
                 @else
                     @foreach ($relatedProducts as $relatedProduct)
                         <x-product-card :product="$relatedProduct" />

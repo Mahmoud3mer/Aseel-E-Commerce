@@ -114,7 +114,7 @@ ul.sub-menu li:last-child {
 }
 
 .mean-bar a.meanmenu-reveal {
-  background-color: $primary-color;
+  background-color: $main-color;
 }
 
 .main-menu-wrap {
@@ -186,13 +186,13 @@ nav.main-menu {
     }
 
     li.current-list-item > a {
-      color: $primary-color;
+      color: $main-color;
     }
   }
 
   li {
     &:hover > a {
-      color: $primary-color;
+      color: $main-color;
     }
 
     a {
@@ -203,7 +203,7 @@ nav.main-menu {
 
 .top-header-area .header-icons a {
   &:hover {
-    color: $primary-color;
+    color: $main-color;
   }
 
   transition: 0.3s;
@@ -280,7 +280,7 @@ a.mobile-show {
     padding: 15px;
     width: 60%;
     background-color: transparent;
-    border-bottom: 1px solid $primary-color;
+    border-bottom: 1px solid $main-color;
     display: block;
     margin: 0 auto;
     text-align: center;
@@ -292,7 +292,7 @@ a.mobile-show {
 
   button[type=submit] {
     border: none;
-    background-color: $primary-color;
+    background-color: $main-color;
     padding: 15px 30px;
     cursor: pointer;
     display: inline-block;

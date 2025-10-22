@@ -64,6 +64,11 @@ Route::middleware('auth')->group(function () {
 // Localization Route
 Route::get('/language/switch', [LanguageController::class, 'switch'])->name('language.switch');
 
+// About Us Route
+Route::get('/about-us', function () {
+    return view('about.about-us');
+})->name('about-us');
+
 // Test Route
 Route::get('/test', function () {
     $categories = Category::all();

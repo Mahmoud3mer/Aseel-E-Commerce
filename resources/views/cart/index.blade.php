@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Cart')
+@section('title', __('app.cart'))
 
 @section('content')
     <!-- breadcrumb-section -->
@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>عربة التسوق</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.cart') }}</h1>
                     </div>
                 </div>
             </div>
@@ -28,11 +28,11 @@
                             <thead class="cart-table-head">
                                 <tr class="table-head-row">
                                     <th class="product-remove"></th>
-                                    <th class="product-image">صورة المنتج</th>
-                                    <th class="product-name">الاسم</th>
-                                    <th class="product-price">السعر</th>
-                                    <th class="product-quantity">الكمية</th>
-                                    <th class="product-total">الإجمالي</th>
+                                    <th class="product-image">{{ __('app.image') }}</th>
+                                    <th class="product-name">{{ __('app.name') }}</th>
+                                    <th class="product-price">{{ __('app.price') }}</th>
+                                    <th class="product-quantity">{{ __('app.quantity') }}</th>
+                                    <th class="product-total">{{ __('app.total') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,7 +71,7 @@
                                                         id="quantity-{{ $cart->product_id }}" min="1"
                                                         style="width: 60px; text-align: center;">
                                                     {{-- <input type="number" placeholder="0" value="{{ $cart->quantity }}"> --}}
-                                                    <button type="submit" title="تحديث الكمية" class="update-quantity-btn"
+                                                    <button type="submit" title="{{ __('app.update_quantity') }}" class="update-quantity-btn"
                                                         id="update-btn-{{ $cart->product_id }}">
                                                         <i class="fas fa-sync-alt"></i>
                                                     </button>
@@ -82,7 +82,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td colspan="6" class="text-center">لا توجد عناصر في السلة.</td>
+                                        <td colspan="6" class="text-center">{{ __('app.no_items_in_cart') }}</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -95,21 +95,21 @@
                         <table class="total-table">
                             <thead class="total-table-head">
                                 <tr class="table-total-row">
-                                    <th>الإجمالي</th>
-                                    <th>السعر</th>
+                                    <th>{{ __('app.total') }}</th>
+                                    <th>{{ __('app.price') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="total-data">
-                                    <td><strong>Subtotal: </strong></td>
+                                    <td><strong>{{ __('app.subtotal') }}: </strong></td>
                                     <td>${{ $subtotal }}</td>
                                 </tr>
                                 <tr class="total-data">
-                                    <td><strong>Shipping: </strong></td>
+                                    <td><strong>{{ __('app.shipping') }}: </strong></td>
                                     <td>$45</td>
                                 </tr>
                                 <tr class="total-data">
-                                    <td><strong>Total: </strong></td>
+                                    <td><strong>{{ __('app.total') }}: </strong></td>
                                     <td>${{ $subtotal + 45 }}</td>
                                 </tr>
                             </tbody>
@@ -117,14 +117,14 @@
                         <div class="cart-buttons">
                             {{-- <a href="cart.html" class="boxed-btn">Update Cart</a> --}}
                             @if ($carts->count() > 0)
-                                <a href="{{ route('cart.checkout') }}" class="boxed-btn black">الدفع</a>
+                                <a href="{{ route('cart.checkout') }}" class="boxed-btn black">{{ __('app.checkout') }}</a>
                             @endif
-                            <a href="{{ route('cart.orders') }}" class="boxed-btn">طلبات سابقة</a>
+                            <a href="{{ route('cart.orders') }}" class="boxed-btn">{{ __('app.previous_orders') }}</a>
                         </div>
                     </div>
 
                     <div class="coupon-section">
-                        <h3>Apply Coupon</h3>
+                        <h3>{{ __('app.apply_coupon') }}</h3>
                         <div class="coupon-form-wrap">
                             <form action="index.html">
                                 <p><input type="text" placeholder="Coupon"></p>

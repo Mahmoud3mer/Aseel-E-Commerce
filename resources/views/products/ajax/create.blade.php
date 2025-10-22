@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create Product')
+@section('title',  __('app.add_product'))
 
 @push('datatables.css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
@@ -18,8 +18,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>اضافة منتج جديد</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.add_product') }}</h1>
                     </div>
                 </div>
             </div>
@@ -34,8 +34,8 @@
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="section-title">
                         <h3>
-                            <span class="orange-text">اضافة</span>
-                            منتج جديد
+                            <span class="orange-text">{{ __('app.add') }}</span>
+                            {{ __('app.add_new_product') }}
                         </h3>
                     </div>
                 </div>
@@ -56,11 +56,10 @@
                             @endif
 
                             <div class="row">
-                                {{-- inputs --}}
                                 <div class="col-12 col-md-6 p-0">
                                     <div class="form-group col-12">
-                                        <input type="text" placeholder="اسم المنتج" name="name" id="name"
-                                            value="{{ old('name') }}">
+                                        <input type="text" placeholder="{{ __('app.product_name') }}" name="name"
+                                            id="name" value="{{ old('name') }}">
                                         @error('name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -68,7 +67,7 @@
 
                                     <div class="form-group col-12">
                                         <select name="category_id" id="category">
-                                            <option value="">اختر قسم</option>
+                                            <option value="">{{ __('app.select_category') }}</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}"
                                                     {{ old('category_id') == $category->id ? 'selected' : '' }}>
@@ -81,22 +80,22 @@
                                     </div>
 
                                     <div class="form-group col-12">
-                                        <input type="number" placeholder="السعر" name="price" id="price"
-                                            value="{{ old('price') }}">
+                                        <input type="number" placeholder="{{ __('app.price') }}" name="price"
+                                            id="price" value="{{ old('price') }}">
                                         @error('price')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="form-group col-12">
-                                        <input type="number" placeholder="الكمية" name="quantity" id="quantity"
-                                            value="{{ old('quantity') }}">
+                                        <input type="number" placeholder="{{ __('app.quantity') }}" name="quantity"
+                                            id="quantity" value="{{ old('quantity') }}">
                                         @error('quantity')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                {{-- image field --}}
+
                                 <div class="col-12 col-md-6 ">
                                     <div class="input-group mb-4">
                                         <input type="file" class="form-control" id="image" name="image_path"
@@ -105,9 +104,7 @@
                                             style="width: 100%; height: 250px;display: none;">
                                         <span class="remove-image" id="remove-image">x</span>
                                         <label class="input-group-text label-file-input" for="image" id="image-label">
-                                            <span>
-                                                صورة المنتج
-                                            </span>
+                                            <span>{{ __('app.image') }}</span>
                                         </label>
                                         @error('image_path')
                                             <div class="text-danger">{{ $message }}</div>
@@ -115,33 +112,13 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="form-group col-md-6 col-12">
-                                    <input type="text" placeholder="اسم المنتج" name="name" id="name">
-                                </div>
-
-                                <div class="form-group col-md-6 col-12">
-                                    <select name="category" id="category">
-                                        <option value="">اختر قسم</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group col-md-6 col-12">
-                                    <input type="text" placeholder="السعر" name="price" id="price">
-                                </div>
-
-                                <div class="form-group col-md-6 col-12">
-                                    <input type="text" placeholder="الكمية" name="quantity" id="quantity">
-                                </div> --}}
-
                                 <div class="form-group col-md-12">
-                                    <textarea name="description" id="description" cols="30" rows="10" placeholder="الوصف">{{ old('description') }}</textarea>
+                                    <textarea name="description" id="description" cols="30" rows="10"
+                                        placeholder="{{ __('app.description') }}">{{ old('description') }}</textarea>
                                 </div>
 
                                 <p class="col-12" style="text-align: end">
-                                    <input type="submit" value="حفظ">
+                                    <input type="submit" value="{{ __('app.save') }}">
                                 </p>
                             </div>
                         </form>
@@ -149,9 +126,9 @@
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- end contact form -->
+
+    <!-- جدول المنتجات -->
     <div class="table-responsive">
         <div class="container">
             <div class="row">
@@ -159,12 +136,11 @@
                     <table class="table" id="products-table">
                         <thead>
                             <tr>
-                                <th scope="col">صورة المنتج</th>
-                                <th scope="col">اسم المنتج</th>
-                                <th scope="col">السعر</th>
-                                <th scope="col">الكمية</th>
-                                {{-- <th scope="col">الوصف</th> --}}
-                                <th scope="col">الإجراءات</th>
+                                <th scope="col">{{ __('app.product_image') }}</th>
+                                <th scope="col">{{ __('app.product_name') }}</th>
+                                <th scope="col">{{ __('app.price') }}</th>
+                                <th scope="col">{{ __('app.quantity') }}</th>
+                                <th scope="col">{{ __('app.actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -175,20 +151,21 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}$</td>
                                     <td>{{ $product->quantity }}</td>
-                                    {{-- <td class="product-description">{{ $product->description }}</td> --}}
                                     <td class="product-table-actions">
                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                             style="display: inline;" class="delete-item-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="delete-btn delete-item-btn"><i
-                                                    class="fas fa-trash"></i>
-                                                حذف</button>
+                                            <button type="button" class="delete-btn delete-item-btn">
+                                                <i class="fas fa-trash"></i> {{ __('app.delete') }}
+                                            </button>
                                         </form>
-                                        <a href="{{ route('products.edit', $product->id) }}" class="edit-btn"><i
-                                                class="fas fa-edit"></i> تعديل </a>
-                                        <a href="{{ route('products.show', $product->id) }}" class="show-btn"><i
-                                                class="fas fa-eye"></i> عرض </a>
+                                        <a href="{{ route('products.edit', $product->id) }}" class="edit-btn">
+                                            <i class="fas fa-edit"></i> {{ __('app.edit') }}
+                                        </a>
+                                        <a href="{{ route('products.show', $product->id) }}" class="show-btn">
+                                            <i class="fas fa-eye"></i> {{ __('app.show') }}
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -197,6 +174,8 @@
                 </div>
             </div>
         </div>
+    </div>
+
     </div>
     {{-- Products Table --}}
     {{-- End Products Table --}}
@@ -211,6 +190,7 @@
         // DataTables
         $(document).ready(function() {
             let table = new DataTable('#products-table');
+            
 
             // handle delete button click
             let modal = document.getElementById('modal');

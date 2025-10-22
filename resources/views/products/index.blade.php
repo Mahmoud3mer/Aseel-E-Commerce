@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Products')
+@section('title', __('app.products'))
 
 @section('content')
 
@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
+                        <p>{{__('app.store_name')}}</p>
                         <h1>{{__('app.products')}}</h1>
                     </div>
                 </div>
@@ -33,36 +33,6 @@
 
                 {{-- Product Card --}}
                 @foreach ($products as $product)
-                    {{-- <div class="col-lg-4 col-md-6 text-center">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="{{ route('products.show', $product->id) }}"><img src="{{ asset('upload/' . $product->image_path) }}"
-                                        alt="" style="min-height: 250px; max-height: 250px;"></a>
-                            </div>
-                            <h3>{{ $product->name }}</h3>
-                            <p class="product-price"><span>{{ $product->quantity }} Item(s)</span> {{ $product->price }}$
-                            </p>
-                                <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-inline cart-form">
-                                    @csrf
-                                    <button type="button" class="cart-btn add-to-cart"><i class="fas fa-shopping-cart"></i> أضف
-                                        إلى السلة </button>
-                                </form>
-                            @auth
-                                @can('is_admin')
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST"
-                                        style="display: inline;" class="delete-item-form">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="delete-btn delete-item-btn"><i class="fas fa-trash"></i>
-                                            حذف</button>
-                                    </form>
-                                    <a href="{{ route('products.edit', $product->id) }}" class="edit-btn"><i
-                                            class="fas fa-edit"></i> تعديل </a>
-                                @endcan
-                            @endauth
-                        </div>
-                    </div> --}}
-
                     <x-product-card :product="$product" />
                 @endforeach
                 {{-- End Product Card --}}
@@ -88,12 +58,6 @@
     <!-- end products -->
 
     {{-- My Modal to improve delete --}}
-        {{-- <div class="myModalBackdrop" id="modalBackdrop"></div>
-        <div class="myModal" id="modal">
-            <p>هل أنت متأكد أنك تريد حذف هذا العنصر؟</p>
-            <button class="btn btn-danger" id="confirmDeleteBtn">حذف</button>
-            <button class="btn btn-secondary" id="cancelDeleteBtn">إلغاء</button>
-        </div> --}}
     <x-delete-modal />
     {{-- End My Modal to improve delete --}}
 @endsection

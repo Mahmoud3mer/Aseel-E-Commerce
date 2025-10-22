@@ -1,5 +1,8 @@
 // Font family
-
+:root {
+	--main-color: #F28123;
+	--secondary-color: #051922;
+}
 @mixin font-fam-sans {
 	font-family: $opensans-font;
 	font-weight: 400;
@@ -35,7 +38,7 @@
 	@include transition(all, 0.2s, ease-in-out);
 
 	&:hover {
-		color: $primary-color;
+		color: $main-color;
 		text-decoration: none;
 	}
 }
@@ -43,13 +46,13 @@
 // Hover State
 @mixin boxed-btn-hvr {
 	background-color: #051922;
-    color: #F28123;
+    color: var(--main-color);
 	color: $white-color;
-	background-color: darken($primary-color, $darken);
+	background-color: darken($main-color, $darken);
 }
 @mixin bordered-btn-hvr {
 	color: $white-color;
-	background-color: darken($primary-color, $darken);
+	background-color: darken($main-color, $darken);
 }
 
 // Rounded corners

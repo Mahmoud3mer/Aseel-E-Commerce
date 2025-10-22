@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Check Out')
+@section('title',  __('app.checkout'))
 
 @section('content')
     <!-- breadcrumb-section -->
@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>Check Out Product</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.checkout') }}</h1>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" type="button" data-toggle="collapse"
                                             data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            عنوان الفاتورة
+                                            {{ __('app.billing_address') }}
                                         </button>
                                     </h5>
                                 </div>
@@ -43,7 +43,7 @@
                                                 @csrf
                                                 @method('POST')
                                                 <p>
-                                                    <input type="text" name="name" id="name" placeholder="الاسم"
+                                                    <input type="text" name="name" id="name" placeholder="{{ __('app.name') }}"
                                                         value="{{ old('name') }}">
                                                     <span class="text-danger">
                                                         @error('name')
@@ -52,7 +52,7 @@
                                                     </span>
                                                 </p>
                                                 <p>
-                                                    <input type="email" name="email" id="email" placeholder="البريد الالكتروني"
+                                                    <input type="email" name="email" id="email" placeholder="{{ __('app.email') }}"
                                                         value="{{ old('email') }}">
                                                     <span class="text-danger">
                                                         @error('email')
@@ -62,7 +62,7 @@
                                                 </p>
                                                 <p>
                                                     <input type="text" name="address" id="address"
-                                                        placeholder="العنوان" value="{{ old('address') }}">
+                                                        placeholder="{{ __('app.address') }}" value="{{ old('address') }}">
                                                     <span class="text-danger">
                                                         @error('address')
                                                             {{ $message }}
@@ -70,7 +70,7 @@
                                                     </span>
                                                 </p>
                                                 <p>
-                                                    <input type="tel" name="phone" id="phone" placeholder="رقم الهاتف"
+                                                    <input type="tel" name="phone" id="phone" placeholder="{{ __('app.phone') }}"
                                                         value="{{ old('phone') }}">
                                                     <span class="text-danger">
                                                         @error('phone')
@@ -79,7 +79,7 @@
                                                     </span>
                                                 </p>
                                                 <p>
-                                                    <textarea name="note" id="note" cols="30" rows="10" placeholder="أضف ملاحظة">{{ old('note') }}</textarea>
+                                                    <textarea name="note" id="note" cols="30" rows="10" placeholder="{{ __('app.note') }}">{{ old('note') }}</textarea>
                                                 </p>
                                             </form>
                                         </div>
@@ -91,7 +91,7 @@
                                     <h5 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            عنوان الشحن
+                                            {{ __('app.shipping_address') }}
                                         </button>
                                     </h5>
                                 </div>
@@ -99,7 +99,7 @@
                                     data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shipping-address-form">
-                                            <p>نموذج عنوان الشحن هنا.</p>
+                                            <p>{{ __('app.shipping_address') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -133,14 +133,14 @@
                         <table class="order-details">
                             <thead>
                                 <tr>
-                                    <th>تفاصيل الطلب</th>
-                                    <th>السعر</th>
+                                    <th>{{ __('app.order') }}</th>
+                                    <th>{{ __('app.price') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="order-details-body">
                                 <tr>
-                                    <td style="font-weight: bold;">المنتج</td>
-                                    <td style="font-weight: bold;">الإجمالي</td>
+                                    <td style="font-weight: bold;">{{ __('app.product') }}</td>
+                                    <td style="font-weight: bold;">{{ __('app.total') }}</td>
                                 </tr>
                                 @foreach ($carts as $cart)
                                     <tr>
@@ -152,21 +152,21 @@
                             </tbody>
                             <tbody class="checkout-details">
                                 <tr>
-                                    <td style="font-weight: bold">Subtotal</td>
+                                    <td style="font-weight: bold">{{ __('app.subtotal') }}</td>
                                     <td>${{ $subtotal }}</td>
                                 </tr>
                                 <tr>
-                                    <td style="font-weight: bold">Shipping</td>
+                                    <td style="font-weight: bold">{{ __('app.shipping') }}</td>
                                     <td>${{ $shipping }}</td>
                                 </tr>
                                 <tr>
-                                    <td style="font-weight: bold;color: #F28123">Total</td>
+                                    <td style="font-weight: bold;color: #F28123">{{ __('app.total') }}</td>
                                     <td style="font-weight: bold;color: #F28123">${{ $subtotal + $shipping }}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="order-button-payment">
-                            <button type="submit" form="order-form" class="cart-btn mt-2">تأكيد الطلب</button>
+                            <button type="submit" form="order-form" class="cart-btn mt-2">{{ __('app.confirm_order') }}</button>
                         </div>
                     </div>
                 </div>

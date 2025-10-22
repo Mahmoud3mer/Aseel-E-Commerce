@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Previous Orders')
+@section('title', __('app.previous_orders'))
 
 @section('content')
     <!-- breadcrumb-section -->
@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center section-title-header">
                     <div class="breadcrumb-text">
-                        <p>Assel E-Commerce</p>
-                        <h1>الطلبات السابقة</h1>
+                        <p>{{ __('app.store_name') }}</p>
+                        <h1>{{ __('app.previous_orders') }}</h1>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                                     data-target="#collapseOne{{ $order->id }}" aria-expanded="true"
                                                     aria-controls="collapseOne{{ $order->id }}">
                                                     تفاصيل الطلب #{{ $order->id }} -
-                                                    {{ $order->created_at->format('d/m/Y') }} - المجموع:
+                                                    {{ $order->created_at->format('d/m/Y') }} - {{ __('app.total') }}:
                                                     ${{ number_format($order->total_price, 2) }}
                                                 </button>
                                             </h5>
@@ -48,25 +48,25 @@
                                                     <form id="order-form">
                                                         <p>
                                                             <input type="text" name="name" id="name"
-                                                                placeholder="الاسم" value="{{ $order->name }}" readonly>
+                                                                placeholder="{{ __('app.name') }}" value="{{ $order->name }}" readonly>
                                                         </p>
                                                         <p>
                                                             <input type="email" name="email" id="email"
-                                                                placeholder="البريد الالكتروني" value="{{ $order->email }}"
+                                                                placeholder="{{ __('app.email') }}" value="{{ $order->email }}"
                                                                 readonly>
                                                         </p>
                                                         <p>
                                                             <input type="text" name="address" id="address"
-                                                                placeholder="العنوان" value="{{ $order->address }}"
+                                                                placeholder="{{ __('app.address') }}" value="{{ $order->address }}"
                                                                 readonly>
                                                         </p>
                                                         <p>
                                                             <input type="tel" name="phone" id="phone"
-                                                                placeholder="رقم الهاتف" value="{{ $order->phone }}"
+                                                                placeholder="{{ __('app.phone') }}" value="{{ $order->phone }}"
                                                                 readonly>
                                                         </p>
                                                         <p>
-                                                            <textarea name="note" id="note" cols="30" rows="10" placeholder="ملاحظة" readonly>{{ $order->note }}</textarea>
+                                                            <textarea name="note" id="note" cols="30" rows="10" placeholder="{{ __('app.note') }}" readonly>{{ $order->note }}</textarea>
                                                         </p>
                                                     </form>
                                                 </div>
@@ -77,11 +77,11 @@
                                                 <table class="cart-table">
                                                     <thead class="cart-table-head">
                                                         <tr class="table-head-row">
-                                                            <th class="product-image">صورة المنتج</th>
-                                                            <th class="product-name">الاسم</th>
-                                                            <th class="product-price">السعر</th>
-                                                            <th class="product-quantity">الكمية</th>
-                                                            <th class="product-total">الإجمالي</th>
+                                                            <th class="product-image">{{ __('app.product_image') }}</th>
+                                                            <th class="product-name">{{ __('app.name') }}</th>
+                                                            <th class="product-price">{{ __('app.price') }}</th>
+                                                            <th class="product-quantity">{{ __('app.quantity') }}</th>
+                                                            <th class="product-total">{{ __('app.total') }}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -108,14 +108,12 @@
                                                                 </tr>
                                                             @endforeach
                                                             <tr>
-                                                                <td colspan="4" class="text-center font-weight-bold">إجمالي الطلب</td>
+                                                                <td colspan="4" class="text-center font-weight-bold">{{ __('app.total_order') }}</td>
                                                                 <td class="product-total font-weight-bold text-danger" >{{ $order->total_price }}$</td>
                                                             </tr>
                                                         @else
                                                             <tr>
-                                                                <td colspan="6" class="text-center">لا توجد عناصر في
-                                                                    السلة.
-                                                                </td>
+                                                                <td colspan="6" class="text-center">{{ __('app.no_items_in_cart') }}</td>
                                                             </tr>
                                                         @endif
                                                     </tbody>
@@ -129,7 +127,7 @@
                                 <hr>
                             @endforeach
                         @else
-                            <h3 class="text-center">لا توجد طلبات سابقة.</h3>
+                            <h3 class="text-center">{{ __('app.no_orders') }}</h3>
                         @endif
 
                     </div>

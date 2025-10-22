@@ -45,7 +45,7 @@
     position: absolute;
     top: calc(50% - 3vmax);
     left: calc(50% - 3vmax);
-    border-left: 3px solid $primary-color;
+    border-left: 3px solid $main-color;
     border-radius: 100%;
     -webkit-animation: spinLeft 800ms linear infinite;
     animation: spinLeft 800ms linear infinite;
@@ -59,7 +59,7 @@
     position: absolute;
     top: calc(50% - 3vmax);
     left: calc(50% - 3vmax);
-    border-left: 3px solid $primary-color;
+    border-left: 3px solid $main-color;
     border-radius: 100%;
     -webkit-animation: spinLeft 800ms linear infinite;
     animation: spinLeft 800ms linear infinite;
@@ -202,7 +202,7 @@
 	background-color: #f5f5f5;
 }
 .orange-text {
-    color: $primary-color;
+    color: $main-color;
 }
 .blue-bg {
     background-color: #162133;
@@ -212,7 +212,7 @@
 a.boxed-btn{
     font-family: 'Poppins', sans-serif;
     display: inline-block;
-    background-color: $primary-color;
+    background-color: $main-color;
     color: $white-color;
     padding: 10px 20px;
 }
@@ -221,7 +221,7 @@ a.bordered-btn {
     font-family: 'Poppins', sans-serif;
     display: inline-block;
     color: $white-color;
-    border: 2px solid $primary-color;
+    border: 2px solid $main-color;
     padding: 7px 20px;
 }
 a.read-more-btn {
@@ -232,7 +232,7 @@ a.read-more-btn {
     font-weight: 700;
 }
 a.read-more-btn:hover {
-    color: $primary-color;
+    color: $main-color;
 }
 a.boxed-btn, a.bordered-btn,  a.cart-btn{
     border-radius: 50px;
@@ -252,7 +252,7 @@ a.boxed-btn, a.bordered-btn,  a.cart-btn{
     bottom: 0px;
     width: 50px;
     height: 2px;
-    background-color: $primary-color;
+    background-color: $main-color;
     margin: 0 auto;
 }
 
@@ -276,7 +276,7 @@ a.boxed-btn, a.bordered-btn,  a.cart-btn{
 
 .breadcrumb-text {
   p {
-    color: $primary-color;
+    color: $main-color;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 7px;

@@ -43,7 +43,7 @@ html, body {
 
 .hero-text {
   p.subtitle {
-    color: $primary-color;
+    color: $main-color;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 7px;
@@ -100,7 +100,7 @@ html, body {
 }
 
 input[type="submit"] {
-  background-color: $primary-color;
+  background-color: $main-color;
   color: $text-color;
   font-weight: 700;
   text-transform: uppercase;
@@ -176,7 +176,7 @@ input[type="submit"] {
 div.owl-controls, .owl-controls div {
   height: auto;
   top: 50%;
-  color: $primary-color;
+  color: $main-color;
   font-size: 48px;
 }
 

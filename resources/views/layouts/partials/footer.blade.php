@@ -1,5 +1,5 @@
 <!-- logo carousel -->
-<div class="logo-carousel-section">
+<div class="logo-carousel-section" dir="ltr">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

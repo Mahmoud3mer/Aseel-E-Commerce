@@ -74,11 +74,11 @@
                     <span class="close-btn"><i class="fas fa-window-close"></i></span>
                     <div class="search-bar">
                         <div class="search-bar-tablecell">
-                            <h3>البحث في المنتجات: </h3>
+                            <h3>{{ __('app.search_in_products') }}: </h3>
                             <form action="{{ route('products.search') }}" method="post">
                                 @csrf
-                                <input type="text" name="query" placeholder="الكلمات المفتاحية">
-                                <button type="submit">بحث <i class="fas fa-search"></i></button>
+                                <input type="text" name="query" placeholder="{{ __('app.keywords') }}">
+                                <button type="submit">{{ __('app.search') }} <i class="fas fa-search"></i></button>
                             </form>
                         </div>
                     </div>

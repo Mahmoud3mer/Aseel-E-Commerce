@@ -472,12 +472,13 @@ button.delete-btn:hover {
     background-color: transparent !important;
     color: var(--main-color) !important;
     border: 1px solid var(--main-color) !important;
-    padding: 4px 4px !important;
+    padding: 2px 4px !important;
     cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     border-radius: 5px !important;
     transition: background-color 0.3s !important;
+    outline: none !important;
 }
 
 .dropdown-toggle:hover {
@@ -539,6 +540,6 @@ button.delete-btn:hover {
 }
 
 .dropdown-menu-items div a:hover {
-    background-color: #F28123 !important;
+    background-color: var(--main-color) !important;
     color: #fff !important;
 }
