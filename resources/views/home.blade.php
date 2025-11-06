@@ -14,7 +14,7 @@
                             <div class="hero-text-tablecell">
                                 <p class="subtitle" style="text-align: center;">{{ __('app.slider1.subtitle') }}</p>
                                 <h1 style="text-align: center;">{{ __('app.slider1.title') }}</h1>
-                                <div class="hero-btns d-flex justify-content-center">
+                                <div class="hero-btns text-center">
                                     <a href="{{ route('products.index') }}"
                                         class="boxed-btn">{{ __('app.browse_products') }}</a>
                                     <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
@@ -34,7 +34,7 @@
                             <div class="hero-text-tablecell">
                                 <p class="subtitle">{{ __('app.slider2.subtitle') }}</p>
                                 <h1>{{ __('app.slider2.title') }}</h1>
-                                <div class="hero-btns">
+                                <div class="hero-btns text-center">
                                     <a href="{{ route('products.index') }}"
                                         class="boxed-btn">{{ __('app.browse_products') }}</a>
                                     <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
@@ -54,7 +54,7 @@
                             <div class="hero-text-tablecell">
                                 <p class="subtitle" style="text-align: center;">{{ __('app.slider3.subtitle') }}</p>
                                 <h1 style="text-align: center;">{{ __('app.slider3.title') }}</h1>
-                                <div class="hero-btns d-flex justify-content-center">
+                                <div class="hero-btns text-center">
                                     <a href="{{ route('products.index') }}"
                                         class="boxed-btn">{{ __('app.browse_products') }}</a>
                                     <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
@@ -74,7 +74,7 @@
                             <div class="hero-text-tablecell">
                                 <p class="subtitle" style="text-align: center;">{{ __('app.slider4.subtitle') }}</p>
                                 <h1 style="text-align: center;">{{ __('app.slider4.title') }}</h1>
-                                <div class="hero-btns  d-flex justify-content-center">
+                                <div class="hero-btns text-center">
                                     <a href="{{ route('products.index') }}"
                                         class="boxed-btn">{{ __('app.browse_products') }}</a>
                                     <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
@@ -94,7 +94,7 @@
                             <div class="hero-text-tablecell">
                                 <p class="subtitle">{{ __('app.slider5.subtitle') }}</p>
                                 <h1>{{ __('app.slider5.title') }}</h1>
-                                <div class="hero-btns">
+                                <div class="hero-btns text-center">
                                     <a href="{{ route('products.index') }}"
                                         class="boxed-btn">{{ __('app.browse_products') }}</a>
                                     <a href="contact.html" class="bordered-btn">{{ __('app.contact_us') }}</a>
@@ -134,7 +134,7 @@
                                         style="min-height: 250px; max-height: 250px;">
                                 </a>
                             </div>
-                            <h3>
+                            <h3 class="h3-category">
                                 <a href="{{ route('products.index', ['category' => $category->id]) }}">
                                     {{ $category->name }}
                                 </a>

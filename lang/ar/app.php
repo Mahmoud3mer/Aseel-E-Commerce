@@ -114,6 +114,43 @@ return [
     'order' => 'الطلب',
     'price' => 'السعر',
     'confirm_order' => 'تأكيد الطلب',
-    'about_us' => 'من نحن'
+    'about_us' => 'من نحن',
+    "december_sale_title"=> "تخفيضات ديسمبر مستمرة!",
+    "december_sale_subtitle"=> "مع خصومات كبيرة",
+    "sale_text"=> "تخفيض حتى",
+    "off"=> "خصم",
+    "shop_now"=> "تسوق الآن",
+    "our_team"=> "فريق العمل",
+    "team_description"=> "أنا مطور هذا الموقع والمسؤول عن كل ما يتعلق به. يسعدني تواصلكم معي في أي وقت.",
+    "owner_name"=> "محمود عامر",
+    "owner_role"=> "صاحب الموقع",
+    'whatsapp' => 'واتساب',
+    'github' => 'جيت هب',
+    'facebook' => 'فيسبوك',
+    'about_title' => 'من أنا',
+    'about_text' => 'أنا محمود عامر، صاحب ومطور هذا الموقع التجاري الإلكتروني. أهدف إلى تقديم منتجات عالية الجودة وتجربة تسوق مميزة لجميع العملاء.',
+
+    'contact_title' => 'تواصل معي',
+    'contact_address' => 'المنيا - مصر',
+    'contact_email' => 'm.amer0440@gmail.com',
+    'contact_phone' => '+20 1113394811',
+
+    'pages_title' => 'الصفحات',
+    'home' => 'الرئيسية',
+    'shop' => 'المتجر',
+    'about' => 'من نحن',
+    'contact' => 'اتصل بنا',
+
+    'subscribe_title' => 'اشترك معنا',
+    'subscribe_text' => 'اشترك في النشرة البريدية لتصلك أحدث العروض والتحديثات.',
+    'subscribe_placeholder' => 'البريد الإلكتروني',
+    'subscribe_button' => 'اشترك',
+
+    'rights' => 'جميع الحقوق محفوظة.',
+    'owner' => 'تطوير وملكية: محمود عامر',
+
+    'linkedin' => 'لينكدإن',
+    'whatsapp' => 'واتساب',
+    'github' => 'جيت هب',
 ];
 

@@ -18,5 +18,13 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'logout' => 'Logout',
     'login' => 'Login',
-
+    'register' => 'Register',
+    'email' => 'Email',
+    'password' => 'Password',
+    'remember_me' => 'Remember me',
+    'create_new_account' => 'Create new account',
+    'have_an_account' => 'Do you have an account?',
+    'name' => 'Name',
+    'google' => 'Google',
+    'confirm_pass' => 'Confirm password'
 ];

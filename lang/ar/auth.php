@@ -18,5 +18,13 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'logout' => 'خروج',
     'login' => 'تسجيل الدخول',
-
+    'register' => 'التسجيل',
+    'email' => 'البريد الإلكتروني',
+    'password' => 'كلمة المرور',
+    'remember_me' => 'تذكرني',
+    'create_new_account' => 'إنشاء حساب جديد',
+    'google' => 'جوجل',
+    'have_an_account' => 'هل لديك حساب؟',
+    'name' => 'Name',
+    'confirm_pass' => 'تأكيد كلمة المرور'
 ];

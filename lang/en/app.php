@@ -117,5 +117,43 @@ return [
     'price' => 'Price',
     'confirm_order' => 'Confirm Order',
     'about_us' => 'About Us',
+    "december_sale_title"=> "December sale is on!",
+    "december_sale_subtitle"=> "with big Discount...",
+    "sale_text"=> "Sale! Upto",
+    "off"=> "off",
+    "shop_now"=> "Shop Now",
+
+    "our_team"=> "Our Team",
+    "team_description"=> "I am the developer and owner of this website. Feel free to contact me anytime.",
+    "owner_name"=> "Mahmoud Amer",
+    "owner_role"=> "Website Owner",
+    'whatsapp' => 'whatsapp',
+    'github' => 'github',
+    'facebook' => 'facebook',
+    'about_title' => 'About Me',
+    'about_text' => 'I am Mahmoud Amer, the owner and developer of this e-commerce website. I aim to provide high-quality products and an excellent shopping experience for all customers.',
+
+    'contact_title' => 'Get in Touch',
+    'contact_address' => 'Minya, Egypt',
+    'contact_email' => 'm.amer0440@gmail.com',
+    'contact_phone' => '+20 1113394811',
+
+    'pages_title' => 'Pages',
+    'home' => 'Home',
+    'shop' => 'Shop',
+    'about' => 'About',
+    'contact' => 'Contact',
+
+    'subscribe_title' => 'Subscribe',
+    'subscribe_text' => 'Subscribe to our newsletter to get the latest updates and offers.',
+    'subscribe_placeholder' => 'Your Email',
+    'subscribe_button' => 'Subscribe',
+
+    'rights' => 'All Rights Reserved.',
+    'owner' => 'Developed and Owned by Mahmoud Amer',
+
+    'linkedin' => 'LinkedIn',
+    'whatsapp' => 'WhatsApp',
+    'github' => 'GitHub',
 ];
 
