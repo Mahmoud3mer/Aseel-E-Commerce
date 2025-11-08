@@ -103,6 +103,10 @@ return [
     'address' => 'Address',
     'note' => 'Note',
     'total_order' => 'Total Order',
+    'home_new_products_section' => [
+        'title' => 'New Arrivals',
+        'description' => 'Discover the latest products added to our collection — high-quality items and modern designs for every style.',
+    ],
     'no_orders' => 'No previous orders found.',
     'no_items_in_cart' => 'No items in the cart.',
     'update_quantity' => 'Update Quantity',

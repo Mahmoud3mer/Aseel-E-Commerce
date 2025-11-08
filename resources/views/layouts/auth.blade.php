@@ -27,6 +27,8 @@
         }
 
         .auth-image {
+            background-image: url("{{ asset('assets/img/login.png') }}");
+            background-size: cover;
             flex: 4;
             position: relative;
         }
@@ -38,18 +40,18 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            gap: 10px;
+            gap: 18px;
             padding: 25px 20px;
         }
 
         @media screen and (max-width: 992px) {
             .auth-form {
-                flex: 0;
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                min-width: min(100% - 40px, 600px);
+                /* min-width: min(100% - 40px, 600px); */
+                min-width: min(100% - 100px);
                 background-color: #343a40a3;
                 border-radius: 11px;
             }
@@ -68,6 +70,9 @@
             color: #fff !important;
             border: 1px solid #f28123 !important;
             margin-top: 5px;
+        }
+        input[type='text'],input[type='email'],input[type='password'] {
+            padding: 15px !important;
         }
 
         input:focus {
@@ -105,7 +110,7 @@
 <body style="overflow-x:hidden; overflow-y:auto">
     <div class="auth-container">
         <div class="auth-image" style="height: 100vh">
-            <img src="{{ asset('assets/img/login.png') }}" class="w-100 h-100" alt="">
+            {{-- <img src="{{ asset('assets/img/login.png') }}" class="w-100 h-100" alt=""> --}}
             <div class="bg-color-glass"></div>
         </div>
 

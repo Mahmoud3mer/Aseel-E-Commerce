@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use App\Models\Category;
 
 
@@ -20,11 +21,7 @@ Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('a
 Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
 // Home Route
-Route::get('/', function () {
-    $categories = Category::all();
-    // dd($categories);
-    return view('home', compact('categories'));
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Products Routes
 Route::get('/products', [ProductsController::class, 'index'])->name('products.index');

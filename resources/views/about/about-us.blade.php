@@ -52,7 +52,7 @@
                         <div class="circle-shape-one"></div>
                         
                         <div class="team-bg"
-                            style="background-image: url('http://127.0.0.1:8000/assets/img/2025062516364300.png');background-size: contain;background-repeat: no-repeat;">
+                            style="background-image: url({{asset("assets/img/2025062516364300.png")}});background-size: contain;background-repeat: no-repeat;">
                         </div>
                         <h4>{{ __('app.owner_name') }} <span>{{ __('app.owner_role') }}</span></h4>
                         <ul class="social-link-team">

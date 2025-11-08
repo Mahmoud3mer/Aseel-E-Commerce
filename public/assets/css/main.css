@@ -1374,6 +1374,54 @@ ul.product-share li:hover a {
   box-shadow: none;
 }
 
+.single-category-item {
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.single-category-item:hover {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* .single-category-item {
+  margin-bottom: 30px;
+} */
+.single-category-item h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.single-category-item .h3-category a {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--main-color);
+}
+
+.single-category-item .h3-category:hover a {
+  color: var(--secondary-color);
+}
+
+.single-category-item .h3-category:hover {
+  animation: bounce 2s infinite;
+}
+
+.single-category-item {
+  -webkit-box-shadow: 0 0 20px #e4e4e4;
+  box-shadow: 0 0 20px #e4e4e4;
+  padding-bottom: 20px;
+  border-radius: 5px;
+}
+
+.single-category-item .category-image {
+  padding: 15px;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
 .search-bar-tablecell button[type=submit] {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;

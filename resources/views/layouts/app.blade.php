@@ -50,9 +50,12 @@
     @stack('datatables.js')
     {{-- End DataTables --}}
 
+    {{-- Swiper CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
 </head>
 
-<body lang="{{App::getLocale()}}" dir="{{App::getLocale() == 'ar' ? 'rtl' : 'ltr'}}">
+<body lang="{{ App::getLocale() }}" dir="{{ App::getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 
     <!--PreLoader-->
     <div class="loader">
@@ -122,8 +125,14 @@
     <!-- main js -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    {{-- Swiper JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
     {{-- My JS Code --}}
     @stack('scripts')
+
+
+
 </body>
 
 </html>
